@@ -5,6 +5,8 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
+import csv
+from io import StringIO
 # Set up logging
 logging.basicConfig(level=logging.DEBUG)
 
@@ -35,5 +37,4 @@ with app.app_context():
 # Import routes
 from routes import *
 
-if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
