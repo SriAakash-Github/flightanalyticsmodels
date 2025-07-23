@@ -1,0 +1,239 @@
+{% extends "base.html" %}
+
+{% block title %}Prediction History & Analytics - ML Prediction System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="display-5 mb-3">
+                <i data-feather="bar-chart-2"></i>
+                Prediction History & Analytics
+            </h1>
+            <p class="lead">View and analyze your prediction history across all models</p>
+        </div>
+    </div>
+
+    <!-- Analytics Summary -->
+    {% if analytics %}
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h2 class="text-primary">{{ analytics.total_predictions }}</h2>
+                    <p class="text-muted mb-0">Total Predictions</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Predictions by Model</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        {% for model, count in analytics.model_counts.items() %}
+                        <div class="col-md-4 mb-2">
+                            <div class="d-flex justify-content-between">
+                                <span>{{ model.replace('_', ' ').title() }}</span>
+                                <span class="badge bg-primary">{{ count }}</span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Filter and Export -->
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <div class="input-group">
+                <span class="input-group-text">
+                    <i data-feather="filter"></i>
+                </span>
+                <select class="form-select" id="modelFilter" onchange="filterHistory()">
+                    <option value="">All Models</option>
+                    <option value="flight_delay">Flight Delay</option>
+                    <option value="baggage_delay_v1">Baggage Delay V1</option>
+                    <option value="damage">Damage Risk</option>
+                    <option value="downtime">System Downtime</option>
+                    <option value="departure">Departure Delay</option>
+                    <option value="mishandled">Mishandled Baggage</option>
+                    <option value="transfer">Transfer SLA</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6 text-end">
+            <a href="{{ url_for('download_history') }}" class="btn btn-outline-primary">
+                <i data-feather="download"></i>
+                Export CSV
+            </a>
+        </div>
+    </div>
+
+    <!-- History Table -->
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">
+                <i data-feather="list"></i>
+                Prediction History
+            </h5>
+        </div>
+        <div class="card-body">
+            {% if history %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Model Type</th>
+                            <th>Flight Number</th>
+                            <th>Timestamp</th>
+                            <th>Batch ID</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyTableBody">
+                        {% for record in history %}
+                        <tr data-model-type="{{ record.model_type }}">
+                            <td>{{ record.id }}</td>
+                            <td>
+                                <span class="badge bg-secondary">
+                                    {{ record.model_type.replace('_', ' ').title() }}
+                                </span>
+                            </td>
+                            <td>{{ record.flight_number or 'N/A' }}</td>
+                            <td>{{ record.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                            <td>
+                                {% if record.batch_id %}
+                                    <small class="text-muted">{{ record.batch_id[:8] }}...</small>
+                                {% else %}
+                                    <small class="text-muted">Single</small>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary" 
+                                        onclick="viewDetails({{ record.id }})">
+                                    <i data-feather="eye"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="text-center py-5">
+                <i data-feather="inbox" style="width: 64px; height: 64px;" class="text-muted mb-3"></i>
+                <h5 class="text-muted">No Prediction History</h5>
+                <p class="text-muted">Start making predictions to see your history here.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Recent Predictions -->
+    {% if analytics and analytics.recent_predictions %}
+    <div class="card mt-4">
+        <div class="card-header">
+            <h5 class="mb-0">
+                <i data-feather="clock"></i>
+                Recent Predictions
+            </h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                {% for prediction in analytics.recent_predictions %}
+                <div class="col-md-6 col-lg-4 mb-3">
+                    <div class="card border-left-primary">
+                        <div class="card-body">
+                            <h6 class="card-title">
+                                {{ prediction.model_type.replace('_', ' ').title() }}
+                            </h6>
+                            <p class="card-text">
+                                <small class="text-muted">
+                                    Flight: {{ prediction.flight_number or 'N/A' }}<br>
+                                    {{ prediction.timestamp.strftime('%Y-%m-%d %H:%M') }}
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Details Modal -->
+<div class="modal fade" id="detailsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i data-feather="info"></i>
+                    Prediction Details
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Details will be loaded here -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function filterHistory() {
+    const filter = document.getElementById('modelFilter').value;
+    const rows = document.querySelectorAll('#historyTableBody tr');
+    
+    rows.forEach(row => {
+        const modelType = row.getAttribute('data-model-type');
+        if (filter === '' || modelType === filter) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+}
+
+function viewDetails(recordId) {
+    // Fetch and display prediction details
+    fetch(`/api/prediction_details/${recordId}`)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('modalBody').innerHTML = `
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Input Data</h6>
+                        <pre class="bg-light p-3 rounded">${JSON.stringify(data.input_data, null, 2)}</pre>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Prediction Result</h6>
+                        <pre class="bg-light p-3 rounded">${JSON.stringify(data.prediction_result, null, 2)}</pre>
+                    </div>
+                </div>
+            `;
+            
+            const modal = new bootstrap.Modal(document.getElementById('detailsModal'));
+            modal.show();
+        })
+        .catch(error => {
+            console.error('Error fetching details:', error);
+        });
+}
+
+// Initialize feather icons
+document.addEventListener('DOMContentLoaded', function() {
+    feather.replace();
+});
+</script>
+{% endblock %}

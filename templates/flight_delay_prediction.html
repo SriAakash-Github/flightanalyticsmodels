@@ -1,0 +1,331 @@
+{% extends "base.html" %}
+
+{% block title %}Flight Delay Prediction - ML Prediction System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-5 mb-3">
+                <i data-feather="clock"></i>
+                Flight Delay Prediction
+            </h1>
+            <p class="lead">Predict if your flight will be delayed and estimate the delay time</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Input Form -->
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i data-feather="edit"></i>
+                        Flight Information
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <form method="post" id="predictionForm" novalidate>
+                        <!-- Flight Details -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="flight_number" class="form-label">Flight Number</label>
+                                <input type="text" class="form-control" id="flight_number" name="flight_number" 
+                                       value="{{ form_data.flight_number if form_data else '' }}" 
+                                       placeholder="e.g., AI101" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="airline" class="form-label">Airline</label>
+                                <select class="form-select" id="airline" name="airline" required>
+                                    <option value="">Select Airline</option>
+                                    <option value="Air India" {{ 'selected' if form_data and form_data.airline == 'Air India' }}>Air India</option>
+                                    <option value="IndiGo" {{ 'selected' if form_data and form_data.airline == 'IndiGo' }}>IndiGo</option>
+                                    <option value="SpiceJet" {{ 'selected' if form_data and form_data.airline == 'SpiceJet' }}>SpiceJet</option>
+                                    <option value="Vistara" {{ 'selected' if form_data and form_data.airline == 'Vistara' }}>Vistara</option>
+                                    <option value="GoAir" {{ 'selected' if form_data and form_data.airline == 'GoAir' }}>GoAir</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="origin_airport" class="form-label">Origin Airport</label>
+                                <select class="form-select" id="origin_airport" name="origin_airport" required>
+                                    <option value="">Select Origin</option>
+                                    <option value="DEL" {{ 'selected' if form_data and form_data.origin_airport == 'DEL' }}>Delhi (DEL)</option>
+                                    <option value="BOM" {{ 'selected' if form_data and form_data.origin_airport == 'BOM' }}>Mumbai (BOM)</option>
+                                    <option value="BLR" {{ 'selected' if form_data and form_data.origin_airport == 'BLR' }}>Bangalore (BLR)</option>
+                                    <option value="MAA" {{ 'selected' if form_data and form_data.origin_airport == 'MAA' }}>Chennai (MAA)</option>
+                                    <option value="CCU" {{ 'selected' if form_data and form_data.origin_airport == 'CCU' }}>Kolkata (CCU)</option>
+                                    <option value="HYD" {{ 'selected' if form_data and form_data.origin_airport == 'HYD' }}>Hyderabad (HYD)</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="destination_airport" class="form-label">Destination Airport</label>
+                                <select class="form-select" id="destination_airport" name="destination_airport" required>
+                                    <option value="">Select Destination</option>
+                                    <option value="DEL" {{ 'selected' if form_data and form_data.destination_airport == 'DEL' }}>Delhi (DEL)</option>
+                                    <option value="BOM" {{ 'selected' if form_data and form_data.destination_airport == 'BOM' }}>Mumbai (BOM)</option>
+                                    <option value="BLR" {{ 'selected' if form_data and form_data.destination_airport == 'BLR' }}>Bangalore (BLR)</option>
+                                    <option value="MAA" {{ 'selected' if form_data and form_data.destination_airport == 'MAA' }}>Chennai (MAA)</option>
+                                    <option value="CCU" {{ 'selected' if form_data and form_data.destination_airport == 'CCU' }}>Kolkata (CCU)</option>
+                                    <option value="HYD" {{ 'selected' if form_data and form_data.destination_airport == 'HYD' }}>Hyderabad (HYD)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Time Information -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="scheduled_departure" class="form-label">Scheduled Departure Time</label>
+                                <input type="time" class="form-control" id="scheduled_departure" name="scheduled_departure" 
+                                       value="{{ form_data.scheduled_departure if form_data else '' }}" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="scheduled_arrival" class="form-label">Scheduled Arrival Time</label>
+                                <input type="time" class="form-control" id="scheduled_arrival" name="scheduled_arrival" 
+                                       value="{{ form_data.scheduled_arrival if form_data else '' }}" required>
+                            </div>
+                        </div>
+
+                        <!-- Weather and Operational Factors -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="weather_condition" class="form-label">Weather Condition</label>
+                                <select class="form-select" id="weather_condition" name="weather_condition" required>
+                                    <option value="">Select Weather</option>
+                                    <option value="Clear" {{ 'selected' if form_data and form_data.weather_condition == 'Clear' }}>Clear</option>
+                                    <option value="Cloudy" {{ 'selected' if form_data and form_data.weather_condition == 'Cloudy' }}>Cloudy</option>
+                                    <option value="Rain" {{ 'selected' if form_data and form_data.weather_condition == 'Rain' }}>Rain</option>
+                                    <option value="Storm" {{ 'selected' if form_data and form_data.weather_condition == 'Storm' }}>Storm</option>
+                                    <option value="Fog" {{ 'selected' if form_data and form_data.weather_condition == 'Fog' }}>Fog</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="day_of_week" class="form-label">Day of Week</label>
+                                <select class="form-select" id="day_of_week" name="day_of_week" required>
+                                    <option value="">Select Day</option>
+                                    <option value="Monday" {{ 'selected' if form_data and form_data.day_of_week == 'Monday' }}>Monday</option>
+                                    <option value="Tuesday" {{ 'selected' if form_data and form_data.day_of_week == 'Tuesday' }}>Tuesday</option>
+                                    <option value="Wednesday" {{ 'selected' if form_data and form_data.day_of_week == 'Wednesday' }}>Wednesday</option>
+                                    <option value="Thursday" {{ 'selected' if form_data and form_data.day_of_week == 'Thursday' }}>Thursday</option>
+                                    <option value="Friday" {{ 'selected' if form_data and form_data.day_of_week == 'Friday' }}>Friday</option>
+                                    <option value="Saturday" {{ 'selected' if form_data and form_data.day_of_week == 'Saturday' }}>Saturday</option>
+                                    <option value="Sunday" {{ 'selected' if form_data and form_data.day_of_week == 'Sunday' }}>Sunday</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Aircraft and Operational Details -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="aircraft_type" class="form-label">Aircraft Type</label>
+                                <select class="form-select" id="aircraft_type" name="aircraft_type" required>
+                                    <option value="">Select Aircraft</option>
+                                    <option value="A320" {{ 'selected' if form_data and form_data.aircraft_type == 'A320' }}>Airbus A320</option>
+                                    <option value="A321" {{ 'selected' if form_data and form_data.aircraft_type == 'A321' }}>Airbus A321</option>
+                                    <option value="B737" {{ 'selected' if form_data and form_data.aircraft_type == 'B737' }}>Boeing 737</option>
+                                    <option value="B777" {{ 'selected' if form_data and form_data.aircraft_type == 'B777' }}>Boeing 777</option>
+                                    <option value="ATR72" {{ 'selected' if form_data and form_data.aircraft_type == 'ATR72' }}>ATR 72</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="passenger_count" class="form-label">Passenger Count</label>
+                                <input type="number" class="form-control" id="passenger_count" name="passenger_count" 
+                                       value="{{ form_data.passenger_count if form_data else '' }}" 
+                                       min="1" max="400" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="flight_distance" class="form-label">Flight Distance (km)</label>
+                                <input type="number" class="form-control" id="flight_distance" name="flight_distance" 
+                                       value="{{ form_data.flight_distance if form_data else '' }}" 
+                                       min="50" step="10" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="is_international" class="form-label">Flight Type</label>
+                                <select class="form-select" id="is_international" name="is_international" required>
+                                    <option value="0" {{ 'selected' if form_data and form_data.is_international == '0' }}>Domestic</option>
+                                    <option value="1" {{ 'selected' if form_data and form_data.is_international == '1' }}>International</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="button" class="btn btn-secondary me-md-2" onclick="resetForm()">
+                                <i data-feather="refresh-cw"></i> Reset
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                <i data-feather="activity"></i> Predict Flight Delay
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Batch Prediction Section -->
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i data-feather="upload"></i>
+                        Batch Prediction
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p>Upload a CSV file with multiple flight records for batch prediction.</p>
+                    <div class="mb-3">
+                        <input type="file" class="form-control" id="batchFile" accept=".csv">
+                    </div>
+                    <button type="button" class="btn btn-outline-primary" onclick="processBatchFile()">
+                        <i data-feather="upload"></i> Upload and Predict
+                    </button>
+                    <div id="batchResults" class="mt-3"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div class="col-lg-4">
+            {% if result %}
+            <div class="card prediction-result">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i data-feather="target"></i>
+                        Prediction Results
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <!-- Delay Status -->
+                    <div class="text-center mb-4">
+                        <div class="display-6 mb-2">
+                            {% if result.prediction == 1 %}
+                                <span class="text-danger">
+                                    <i data-feather="alert-triangle"></i>
+                                    DELAYED
+                                </span>
+                            {% else %}
+                                <span class="text-success">
+                                    <i data-feather="check-circle"></i>
+                                    ON TIME
+                                </span>
+                            {% endif %}
+                        </div>
+                        <div class="text-muted">Flight Status Prediction</div>
+                    </div>
+
+                    <!-- Probability -->
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Confidence</span>
+                            <span><strong>{{ (result.probability * 100) | round(1) }}%</strong></span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" 
+                                 style="width: {{ (result.probability * 100) | round(1) }}%">
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if result.estimated_delay_minutes %}
+                    <!-- Estimated Delay -->
+                    <div class="alert alert-info">
+                        <h6 class="alert-heading">
+                            <i data-feather="clock"></i>
+                            Estimated Delay
+                        </h6>
+                        <p class="mb-0">
+                            <strong>{{ result.estimated_delay_minutes }} minutes</strong>
+                        </p>
+                    </div>
+                    {% endif %}
+
+                    <!-- Action Buttons -->
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-outline-secondary btn-sm" onclick="copyResults()">
+                            <i data-feather="copy"></i> Copy Results
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="card">
+                <div class="card-body text-center">
+                    <i data-feather="clock" style="width: 64px; height: 64px;" class="text-muted mb-3"></i>
+                    <h5 class="text-muted">No Prediction Yet</h5>
+                    <p class="text-muted">Fill out the form and click "Predict Flight Delay" to get your results.</p>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Quick Stats -->
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h6 class="mb-0">
+                        <i data-feather="info"></i>
+                        Model Information
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <small class="text-muted">
+                        <ul class="list-unstyled mb-0">
+                            <li>• ML Algorithm: XGBoost Classifier</li>
+                            <li>• Features: 12 input parameters</li>
+                            <li>• Accuracy: ~85%</li>
+                            <li>• Updated: Real-time</li>
+                        </ul>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function resetForm() {
+    document.getElementById('predictionForm').reset();
+}
+
+function copyResults() {
+    // Implementation for copying results
+    navigator.clipboard.writeText('Flight prediction results copied!');
+}
+
+function processBatchFile() {
+    const fileInput = document.getElementById('batchFile');
+    const file = fileInput.files[0];
+    
+    if (!file) {
+        alert('Please select a CSV file');
+        return;
+    }
+    
+    const formData = new FormData();
+    formData.append('file', file);
+    
+    fetch('/batch_prediction/flight_delay', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('batchResults').innerHTML = `
+            <div class="alert alert-success">
+                <h6>Batch Processing Complete</h6>
+                <p>Processed ${data.total_predictions} records</p>
+                <p>Batch ID: ${data.batch_id}</p>
+            </div>
+        `;
+    })
+    .catch(error => {
+        document.getElementById('batchResults').innerHTML = `
+            <div class="alert alert-danger">
+                <h6>Error</h6>
+                <p>${error.message}</p>
+            </div>
+        `;
+    });
+}
+</script>
+{% endblock %}

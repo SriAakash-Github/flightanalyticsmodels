@@ -26,6 +26,14 @@
                 </div>
                 <div class="card-body">
                     <form method="POST">
+                        <div class="mb-3">
+                            <label for="flight_number" class="form-label">Flight Number</label>
+                            <input type="text" class="form-control" id="flight_number" name="flight_number" 
+                                   value="{{ form_data.flight_number if form_data else '' }}" 
+                                   placeholder="e.g., AI101">
+                            <div class="form-text">Optional: For categorization and history tracking</div>
+                        </div>
+                        
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="total_bags" class="form-label">Total Bags</label>
@@ -105,6 +113,18 @@
                             </button>
                         </div>
                     </form>
+                    
+                    <!-- Batch Prediction -->
+                    <hr class="my-4">
+                    <h6>Batch Prediction</h6>
+                    <div class="mb-3">
+                        <input type="file" class="form-control" id="batchFile" accept=".csv">
+                        <div class="form-text">Upload CSV with same column format for batch prediction</div>
+                    </div>
+                    <button type="button" class="btn btn-outline-secondary" onclick="processBatchFile('damage')">
+                        <i data-feather="upload"></i> Process Batch
+                    </button>
+                    <div id="batchResults" class="mt-3"></div>
                 </div>
             </div>
         </div>
@@ -239,6 +259,44 @@
         </div>
     </div>
 </div>
+
+<script>
+function processBatchFile(modelType) {
+    const fileInput = document.getElementById('batchFile');
+    const file = fileInput.files[0];
+    
+    if (!file) {
+        alert('Please select a CSV file');
+        return;
+    }
+    
+    const formData = new FormData();
+    formData.append('file', file);
+    
+    fetch(`/batch_prediction/${modelType}`, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('batchResults').innerHTML = `
+            <div class="alert alert-success">
+                <h6>Batch Processing Complete</h6>
+                <p>Processed ${data.total_predictions} records</p>
+                <p>Batch ID: ${data.batch_id}</p>
+            </div>
+        `;
+    })
+    .catch(error => {
+        document.getElementById('batchResults').innerHTML = `
+            <div class="alert alert-danger">
+                <h6>Error</h6>
+                <p>${error.message}</p>
+            </div>
+        `;
+    });
+}
+</script>
 {% endblock %}
 
 {% block scripts %}

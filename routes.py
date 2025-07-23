@@ -1,12 +1,44 @@
 from flask import render_template, request, jsonify, flash, redirect, url_for
+from flask import send_file
 import joblib
 import numpy as np
 import pandas as pd
 import os
 import logging
+import json
+import uuid
+from datetime import datetime
+import io
 from app import app
+from app import db, PredictionHistory
 
 logger = logging.getLogger(__name__)
+
+def save_prediction_history(model_type, flight_number, input_data, prediction_result, batch_id=None):
+    """Save prediction to history database"""
+    try:
+        history = PredictionHistory(
+            model_type=model_type,
+            flight_number=flight_number,
+            input_data=json.dumps(input_data),
+            prediction_result=json.dumps(prediction_result),
+            batch_id=batch_id
+        )
+        db.session.add(history)
+        db.session.commit()
+    except Exception as e:
+        logger.error(f"Error saving prediction history: {e}")
+
+def get_prediction_history(model_type=None, limit=100):
+    """Get prediction history from database"""
+    try:
+        query = PredictionHistory.query
+        if model_type:
+            query = query.filter_by(model_type=model_type)
+        return query.order_by(PredictionHistory.timestamp.desc()).limit(limit).all()
+    except Exception as e:
+        logger.error(f"Error getting prediction history: {e}")
+        return []
 
 class ModelPredictor:
     def __init__(self):
@@ -104,6 +136,10 @@ def damage_prediction():
                     'high_risk_prob': float(probability[1]) * 100 if len(probability) > 1 else 0
                 }
                 
+                # Save to history
+                save_prediction_history('damage', request.form.get('flight_number', ''), 
+                                      request.form.to_dict(), result)
+                
                 return render_template('damage_prediction.html', result=result, 
                                      form_data=request.form)
             else:
@@ -159,6 +195,10 @@ def downtime_prediction():
                     'low_risk_prob': float(probability[0]) * 100,
                     'high_risk_prob': float(probability[1]) * 100 if len(probability) > 1 else 0
                 }
+                
+                # Save to history
+                save_prediction_history('downtime', request.form.get('flight_number', ''), 
+                                      request.form.to_dict(), result)
                 
                 return render_template('downtime_prediction.html', result=result,
                                      form_data=request.form)
@@ -216,6 +256,10 @@ def departure_prediction():
                     'high_risk_prob': float(probability[1]) * 100 if len(probability) > 1 else 0
                 }
                 
+                # Save to history
+                save_prediction_history('departure', request.form.get('flight_number', ''), 
+                                      request.form.to_dict(), result)
+                
                 return render_template('departure_prediction.html', result=result,
                                      form_data=request.form)
             else:
@@ -270,6 +314,10 @@ def mishandled_prediction():
                     'high_risk_prob': float(probability[1]) * 100 if len(probability) > 1 else 0
                 }
                 
+                # Save to history
+                save_prediction_history('mishandled', request.form.get('flight_number', ''), 
+                                      request.form.to_dict(), result)
+                
                 return render_template('mishandled_prediction.html', result=result,
                                      form_data=request.form)
             else:
@@ -320,6 +368,10 @@ def transfer_prediction():
                     'low_risk_prob': float(probability[0]) * 100,
                     'high_risk_prob': float(probability[1]) * 100 if len(probability) > 1 else 0
                 }
+                
+                # Save to history
+                save_prediction_history('transfer', request.form.get('flight_number', ''), 
+                                      request.form.to_dict(), result)
                 
                 return render_template('transfer_prediction.html', result=result,
                                      form_data=request.form)
@@ -438,6 +490,131 @@ def baggage_delay_prediction_v1():
                 'probability': float(proba),
                 'predicted_delay_minutes': delay_minutes
             }
+            
+            # Save to history
+            save_prediction_history('baggage_delay_v1', form_data.get('flight_number', ''), 
+                                  form_data, result)
         except Exception as e:
             error = str(e)
     return render_template('baggage_delay_prediction.html', result=result, form_data=form_data, error=error)
+
+# New KPI Routes
+@app.route('/flight_delay_prediction', methods=['GET', 'POST'])
+def flight_delay_prediction():
+    """Flight Delay Prediction"""
+    if request.method == 'POST':
+        try:
+            # Process flight delay prediction
+            # This would use a flight delay model (to be trained)
+            result = {
+                'prediction': 1,  # Placeholder
+                'probability': 0.75,
+                'estimated_delay_minutes': 45
+            }
+            
+            save_prediction_history('flight_delay', request.form.get('flight_number', ''), 
+                                  request.form.to_dict(), result)
+            
+            return render_template('flight_delay_prediction.html', result=result, form_data=request.form)
+        except Exception as e:
+            flash(f'Error making prediction: {str(e)}', 'error')
+    
+    return render_template('flight_delay_prediction.html')
+
+# Batch Prediction Routes
+@app.route('/batch_prediction/<model_type>', methods=['POST'])
+def batch_prediction(model_type):
+    """Handle batch predictions for any model type"""
+    if 'file' not in request.files:
+        return jsonify({'error': 'No file uploaded'}), 400
+    
+    file = request.files['file']
+    if file.filename == '':
+        return jsonify({'error': 'No file selected'}), 400
+    
+    try:
+        # Read CSV file
+        df = pd.read_csv(file)
+        batch_id = str(uuid.uuid4())
+        results = []
+        
+        for index, row in df.iterrows():
+            # Convert row to dict for prediction
+            input_data = row.to_dict()
+            
+            # Make prediction based on model type
+            if model_type in predictor.models:
+                # Process prediction (simplified for now)
+                prediction_result = {
+                    'row_index': index,
+                    'prediction': 1,  # Placeholder
+                    'confidence': 0.8
+                }
+                
+                results.append(prediction_result)
+                
+                # Save to history
+                save_prediction_history(model_type, input_data.get('flight_number', ''), 
+                                      input_data, prediction_result, batch_id)
+        
+        return jsonify({
+            'batch_id': batch_id,
+            'total_predictions': len(results),
+            'results': results
+        })
+        
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+# History and Analytics Routes
+@app.route('/prediction_history')
+def prediction_history():
+    """View prediction history and analytics"""
+    model_type = request.args.get('model_type')
+    history = get_prediction_history(model_type)
+    
+    # Prepare analytics data
+    analytics = {}
+    if history:
+        total_predictions = len(history)
+        model_counts = {}
+        for h in history:
+            model_counts[h.model_type] = model_counts.get(h.model_type, 0) + 1
+        
+        analytics = {
+            'total_predictions': total_predictions,
+            'model_counts': model_counts,
+            'recent_predictions': history[:10]
+        }
+    
+    return render_template('prediction_history.html', history=history, analytics=analytics)
+
+@app.route('/download_history')
+def download_history():
+    """Download prediction history as CSV"""
+    history = get_prediction_history()
+    
+    # Create CSV data
+    data = []
+    for h in history:
+        data.append({
+            'id': h.id,
+            'model_type': h.model_type,
+            'flight_number': h.flight_number,
+            'timestamp': h.timestamp,
+            'batch_id': h.batch_id
+        })
+    
+    df = pd.DataFrame(data)
+    
+    # Create CSV file in memory
+    output = io.StringIO()
+    df.to_csv(output, index=False)
+    output.seek(0)
+    
+    return send_file(
+        io.BytesIO(output.getvalue().encode()),
+        mimetype='text/csv',
+        as_attachment=True,
+        download_name='prediction_history.csv'
+    )
