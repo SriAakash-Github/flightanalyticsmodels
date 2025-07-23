@@ -1,0 +1,452 @@
+{% extends "base.html" %}
+
+{% block title %}Model Performance - Baggage ML System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="display-5 mb-3">
+                <i data-feather="bar-chart-2"></i>
+                Model Performance Dashboard
+            </h1>
+            <p class="lead">Detailed performance metrics and feature importance for all prediction models</p>
+        </div>
+    </div>
+
+    {% if metrics %}
+    <!-- Performance Summary Cards -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="mb-3">
+                <i data-feather="trending-up"></i>
+                Performance Summary
+            </h2>
+        </div>
+        
+        {% for model_name, metric in metrics.items() %}
+        <div class="col-md-6 col-xl-4 mb-4">
+            <div class="card h-100">
+                <div class="card-header d-flex align-items-center">
+                    <div class="me-2">
+                        {% if model_name == 'damage' %}
+                            <i data-feather="alert-triangle" class="text-warning"></i>
+                        {% elif model_name == 'downtime' %}
+                            <i data-feather="power" class="text-danger"></i>
+                        {% elif model_name == 'departure' %}
+                            <i data-feather="clock" class="text-info"></i>
+                        {% elif model_name == 'mishandled' %}
+                            <i data-feather="package" class="text-primary"></i>
+                        {% elif model_name == 'transfer' %}
+                            <i data-feather="shuffle" class="text-success"></i>
+                        {% endif %}
+                    </div>
+                    <h5 class="mb-0">{{ model_name.title() }} Model</h5>
+                </div>
+                <div class="card-body">
+                    <!-- Metrics Grid -->
+                    <div class="row text-center mb-3">
+                        <div class="col-6">
+                            <div class="border rounded p-2 mb-2">
+                                <div class="h5 mb-0">{{ "%.1f"|format(metric.accuracy * 100) }}%</div>
+                                <small class="text-muted">Accuracy</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="border rounded p-2 mb-2">
+                                <div class="h5 mb-0">{{ "%.1f"|format(metric.precision * 100) }}%</div>
+                                <small class="text-muted">Precision</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="border rounded p-2">
+                                <div class="h5 mb-0">{{ "%.1f"|format(metric.recall * 100) }}%</div>
+                                <small class="text-muted">Recall</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="border rounded p-2">
+                                <div class="h5 mb-0">{{ "%.1f"|format(metric.f1 * 100) }}%</div>
+                                <small class="text-muted">F1 Score</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Performance Indicator -->
+                    <div class="text-center">
+                        {% if metric.accuracy >= 0.85 %}
+                            <span class="badge bg-success">Excellent</span>
+                        {% elif metric.accuracy >= 0.75 %}
+                            <span class="badge bg-info">Good</span>
+                        {% elif metric.accuracy >= 0.65 %}
+                            <span class="badge bg-warning">Fair</span>
+                        {% else %}
+                            <span class="badge bg-danger">Needs Improvement</span>
+                        {% endif %}
+                        <small class="text-muted d-block mt-1">{{ metric.feature_names|length }} features</small>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-outline-primary btn-sm w-100" onclick="showFeatureImportance('{{ model_name }}')">
+                        <i data-feather="bar-chart"></i>
+                        View Feature Importance
+                    </button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Feature Importance Charts -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="mb-3">
+                <i data-feather="layers"></i>
+                Feature Importance Analysis
+            </h2>
+        </div>
+        
+        {% for model_name, metric in metrics.items() %}
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        {% if model_name == 'damage' %}
+                            <i data-feather="alert-triangle"></i> Damage Risk Model
+                        {% elif model_name == 'downtime' %}
+                            <i data-feather="power"></i> System Downtime Model
+                        {% elif model_name == 'departure' %}
+                            <i data-feather="clock"></i> Departure Delay Model
+                        {% elif model_name == 'mishandled' %}
+                            <i data-feather="package"></i> Mishandled Baggage Model
+                        {% elif model_name == 'transfer' %}
+                            <i data-feather="shuffle"></i> Transfer SLA Model
+                        {% endif %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="chart-{{ model_name }}" width="400" height="300"></canvas>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Model Details -->
+    <div class="row">
+        <div class="col-12">
+            <h2 class="mb-3">
+                <i data-feather="info"></i>
+                Model Details & KPI Targets
+            </h2>
+        </div>
+        
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i data-feather="target"></i>
+                        Risk Thresholds & KPIs
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Model</th>
+                                    <th>Risk Threshold</th>
+                                    <th>KPI Target</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><i data-feather="alert-triangle" class="me-1"></i>Damage</td>
+                                    <td>>10% damage rate</td>
+                                    <td>Keep damage <10%</td>
+                                </tr>
+                                <tr>
+                                    <td><i data-feather="power" class="me-1"></i>Downtime</td>
+                                    <td>>60 min daily</td>
+                                    <td>Minimize downtime</td>
+                                </tr>
+                                <tr>
+                                    <td><i data-feather="clock" class="me-1"></i>Departure</td>
+                                    <td>>20% late load</td>
+                                    <td>On-time departure</td>
+                                </tr>
+                                <tr>
+                                    <td><i data-feather="package" class="me-1"></i>Mishandled</td>
+                                    <td>>5% mishandled</td>
+                                    <td>Customer satisfaction</td>
+                                </tr>
+                                <tr>
+                                    <td><i data-feather="shuffle" class="me-1"></i>Transfer</td>
+                                    <td><90% compliance</td>
+                                    <td>SLA compliance</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i data-feather="settings"></i>
+                        Model Configuration
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <h6>XGBoost Parameters</h6>
+                    <ul class="list-unstyled">
+                        <li><strong>Estimators:</strong> 100</li>
+                        <li><strong>Max Depth:</strong> 6</li>
+                        <li><strong>Learning Rate:</strong> 0.1</li>
+                        <li><strong>Subsample:</strong> 0.8</li>
+                        <li><strong>Column Sample:</strong> 0.8</li>
+                    </ul>
+                    
+                    <h6 class="mt-3">Data Processing</h6>
+                    <ul class="list-unstyled">
+                        <li><i data-feather="check"></i> Flight-level aggregation</li>
+                        <li><i data-feather="check"></i> StandardScaler normalization</li>
+                        <li><i data-feather="check"></i> Label encoding for categories</li>
+                        <li><i data-feather="check"></i> 80/20 train/test split</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% else %}
+    <!-- No Models Available -->
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-info text-center">
+                <i data-feather="info" style="width: 48px; height: 48px;" class="mb-3"></i>
+                <h4>No Model Performance Data Available</h4>
+                <p class="mb-3">Train the models first to view performance metrics and feature importance charts.</p>
+                <a href="{{ url_for('train_models') }}" class="btn btn-primary">
+                    <i data-feather="play"></i>
+                    Train Models Now
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Feature Importance Modal -->
+<div class="modal fade" id="featureModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i data-feather="bar-chart"></i>
+                    Feature Importance
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <canvas id="modalChart" width="400" height="300"></canvas>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Store metrics data for charts
+    const metricsData = {{ metrics|tojson|safe if metrics else '{}' }};
+    
+    // Chart colors for different models
+    const modelColors = {
+        'damage': '#ffc107',
+        'downtime': '#dc3545', 
+        'departure': '#0dcaf0',
+        'mishandled': '#0d6efd',
+        'transfer': '#198754'
+    };
+    
+    // Initialize feature importance charts
+    document.addEventListener('DOMContentLoaded', function() {
+        feather.replace();
+        
+        // Create charts for each model
+        Object.keys(metricsData).forEach(modelName => {
+            createFeatureImportanceChart(modelName);
+        });
+    });
+    
+    function createFeatureImportanceChart(modelName) {
+        const canvasId = 'chart-' + modelName;
+        const canvas = document.getElementById(canvasId);
+        
+        if (!canvas || !metricsData[modelName]) return;
+        
+        const metric = metricsData[modelName];
+        const ctx = canvas.getContext('2d');
+        
+        // Prepare data - take top 10 features
+        const features = metric.feature_names || [];
+        const importance = metric.feature_importance || [];
+        
+        // Combine and sort by importance
+        const combined = features.map((name, index) => ({
+            name: name,
+            importance: importance[index] || 0
+        })).sort((a, b) => b.importance - a.importance).slice(0, 8);
+        
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: combined.map(item => item.name),
+                datasets: [{
+                    label: 'Feature Importance',
+                    data: combined.map(item => item.importance),
+                    backgroundColor: modelColors[modelName] + '80',
+                    borderColor: modelColors[modelName],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Importance Score'
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: 'rgba(255, 255, 255, 0.8)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Features'
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: 'rgba(255, 255, 255, 0.8)',
+                            maxRotation: 45
+                        }
+                    }
+                }
+            }
+        });
+    }
+    
+    function showFeatureImportance(modelName) {
+        const modal = new bootstrap.Modal(document.getElementById('featureModal'));
+        const modalTitle = document.querySelector('#featureModal .modal-title');
+        const modalCanvas = document.getElementById('modalChart');
+        
+        // Update modal title
+        modalTitle.innerHTML = `<i data-feather="bar-chart"></i> ${modelName.charAt(0).toUpperCase() + modelName.slice(1)} Model - Feature Importance`;
+        
+        // Clear previous chart
+        const existingChart = Chart.getChart(modalCanvas);
+        if (existingChart) {
+            existingChart.destroy();
+        }
+        
+        // Create new chart in modal
+        if (metricsData[modelName]) {
+            const metric = metricsData[modelName];
+            const ctx = modalCanvas.getContext('2d');
+            
+            const features = metric.feature_names || [];
+            const importance = metric.feature_importance || [];
+            
+            const combined = features.map((name, index) => ({
+                name: name,
+                importance: importance[index] || 0
+            })).sort((a, b) => b.importance - a.importance);
+            
+            new Chart(ctx, {
+                type: 'horizontalBar',
+                data: {
+                    labels: combined.map(item => item.name),
+                    datasets: [{
+                        label: 'Feature Importance',
+                        data: combined.map(item => item.importance),
+                        backgroundColor: modelColors[modelName] + '80',
+                        borderColor: modelColors[modelName],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Importance Score'
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: 'rgba(255, 255, 255, 0.8)'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Features'
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: 'rgba(255, 255, 255, 0.8)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        modal.show();
+        
+        // Refresh feather icons
+        feather.replace();
+    }
+    
+    // Auto-refresh feather icons when modal is shown
+    document.getElementById('featureModal').addEventListener('shown.bs.modal', function() {
+        feather.replace();
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Baggage ML Prediction System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="display-4 mb-3">
+                <i data-feather="trending-up"></i>
+                Baggage Operations Dashboard
+            </h1>
+            <p class="lead">Flight-level baggage prediction system using machine learning</p>
+        </div>
+    </div>
+
+    <!-- Model Status Cards -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="mb-3">
+                <i data-feather="cpu"></i>
+                Model Status
+            </h2>
+        </div>
+        
+        {% if metrics %}
+            {% for model_name, metric in metrics.items() %}
+            <div class="col-md-6 col-lg-4 mb-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {% if model_name == 'damage' %}
+                                <i data-feather="alert-triangle"></i> Damage Risk Model
+                            {% elif model_name == 'downtime' %}
+                                <i data-feather="power"></i> System Downtime Model
+                            {% elif model_name == 'departure' %}
+                                <i data-feather="clock"></i> Departure Delay Model
+                            {% elif model_name == 'mishandled' %}
+                                <i data-feather="package"></i> Mishandled Baggage Model
+                            {% elif model_name == 'transfer' %}
+                                <i data-feather="shuffle"></i> Transfer SLA Model
+                            {% endif %}
+                        </h5>
+                        <div class="row text-center">
+                            <div class="col-6">
+                                <div class="text-success">
+                                    <strong>{{ "%.1f"|format(metric.accuracy * 100) }}%</strong>
+                                </div>
+                                <small class="text-muted">Accuracy</small>
+                            </div>
+                            <div class="col-6">
+                                <div class="text-info">
+                                    <strong>{{ "%.1f"|format(metric.f1 * 100) }}%</strong>
+                                </div>
+                                <small class="text-muted">F1 Score</small>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <span class="badge bg-success">Active</span>
+                            <span class="badge bg-secondary">{{ metric.feature_names|length }} Features</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12">
+                <div class="alert alert-warning">
+                    <i data-feather="alert-circle"></i>
+                    <strong>No models available.</strong> 
+                    <a href="{{ url_for('train_models') }}" class="alert-link">Train models first</a> to start making predictions.
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Prediction Tools -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="mb-3">
+                <i data-feather="activity"></i>
+                Prediction Tools
+            </h2>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i data-feather="alert-triangle" class="mb-3" style="width: 48px; height: 48px;"></i>
+                    <h5 class="card-title">Damage Risk Prediction</h5>
+                    <p class="card-text">Predict the likelihood of baggage damage for flights based on historical patterns and operational factors.</p>
+                    <a href="{{ url_for('damage_prediction') }}" class="btn btn-outline-primary">
+                        <i data-feather="arrow-right"></i> Predict Damage Risk
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i data-feather="power" class="mb-3" style="width: 48px; height: 48px;"></i>
+                    <h5 class="card-title">System Downtime Prediction</h5>
+                    <p class="card-text">Forecast potential system downtime events to enable proactive maintenance and minimize disruptions.</p>
+                    <a href="{{ url_for('downtime_prediction') }}" class="btn btn-outline-primary">
+                        <i data-feather="arrow-right"></i> Predict Downtime
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i data-feather="clock" class="mb-3" style="width: 48px; height: 48px;"></i>
+                    <h5 class="card-title">Departure Delay Prediction</h5>
+                    <p class="card-text">Assess the risk of delayed baggage loading that could impact flight departure schedules.</p>
+                    <a href="{{ url_for('departure_prediction') }}" class="btn btn-outline-primary">
+                        <i data-feather="arrow-right"></i> Predict Delays
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i data-feather="package" class="mb-3" style="width: 48px; height: 48px;"></i>
+                    <h5 class="card-title">Mishandled Baggage Prediction</h5>
+                    <p class="card-text">Identify flights at risk of baggage mishandling to improve passenger satisfaction and reduce claims.</p>
+                    <a href="{{ url_for('mishandled_prediction') }}" class="btn btn-outline-primary">
+                        <i data-feather="arrow-right"></i> Predict Mishandling
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i data-feather="shuffle" class="mb-3" style="width: 48px; height: 48px;"></i>
+                    <h5 class="card-title">Transfer SLA Prediction</h5>
+                    <p class="card-text">Monitor transfer baggage SLA compliance risk for connecting flights and optimize transfer processes.</p>
+                    <a href="{{ url_for('transfer_prediction') }}" class="btn btn-outline-primary">
+                        <i data-feather="arrow-right"></i> Predict SLA Risk
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i data-feather="bar-chart-2" class="mb-3" style="width: 48px; height: 48px;"></i>
+                    <h5 class="card-title">Model Performance</h5>
+                    <p class="card-text">View detailed performance metrics, feature importance, and model diagnostics for all prediction models.</p>
+                    <a href="{{ url_for('model_performance') }}" class="btn btn-outline-secondary">
+                        <i data-feather="arrow-right"></i> View Performance
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Key Features -->
+    <div class="row">
+        <div class="col-12">
+            <h2 class="mb-3">
+                <i data-feather="star"></i>
+                Key Features
+            </h2>
+        </div>
+        
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i data-feather="layers"></i>
+                        Flight-Level Predictions
+                    </h5>
+                    <p class="card-text">All models provide flight-level predictions rather than individual baggage predictions, enabling operational decision-making at scale.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i data-feather="zap"></i>
+                        Real-Time Scoring
+                    </h5>
+                    <p class="card-text">Trained XGBoost models provide immediate risk scoring with confidence intervals for operational teams.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i data-feather="target"></i>
+                        SLA Compliance Focus
+                    </h5>
+                    <p class="card-text">Models are calibrated to industry KPIs and SLA thresholds to support operational excellence targets.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Initialize feather icons after page load
+    document.addEventListener('DOMContentLoaded', function() {
+        feather.replace();
+    });
+</script>
+{% endblock %}

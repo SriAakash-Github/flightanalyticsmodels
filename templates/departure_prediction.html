@@ -1,0 +1,245 @@
+{% extends "base.html" %}
+
+{% block title %}Departure Delay Prediction - Baggage ML System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-5 mb-3">
+                <i data-feather="clock"></i>
+                Departure Delay Risk Prediction
+            </h1>
+            <p class="lead">Assess the risk of delayed baggage loading that could impact flight departure</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Input Form -->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i data-feather="plane"></i>
+                        Flight Load Information
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="total_bags" class="form-label">Total Bags</label>
+                                <input type="number" class="form-control" id="total_bags" name="total_bags" 
+                                       value="{{ form_data.total_bags if form_data else '' }}" 
+                                       min="1" step="1" required>
+                                <div class="form-text">Number of bags to load</div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="avg_load_lead_time" class="form-label">Avg Load Lead Time (min)</label>
+                                <input type="number" class="form-control" id="avg_load_lead_time" name="avg_load_lead_time" 
+                                       value="{{ form_data.avg_load_lead_time if form_data else '' }}" 
+                                       min="0" step="0.1" required>
+                                <div class="form-text">Average time from arrival to loading</div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="avg_checkin_duration" class="form-label">Avg Check-in Duration (min)</label>
+                                <input type="number" class="form-control" id="avg_checkin_duration" name="avg_checkin_duration" 
+                                       value="{{ form_data.avg_checkin_duration if form_data else '' }}" 
+                                       min="0" step="0.1" required>
+                                <div class="form-text">Average check-in to load duration</div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="avg_turnaround_time" class="form-label">Avg Turnaround Time (min)</label>
+                                <input type="number" class="form-control" id="avg_turnaround_time" name="avg_turnaround_time" 
+                                       value="{{ form_data.avg_turnaround_time if form_data else '' }}" 
+                                       min="0" step="0.1" required>
+                                <div class="form-text">Average trolley turnaround time</div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="team" class="form-label">Load Team</label>
+                                <select class="form-select" id="team" name="team" required>
+                                    <option value="">Select Team</option>
+                                    <option value="Team_1" {{ 'selected' if form_data and form_data.team == 'Team_1' }}>Team 1</option>
+                                    <option value="Team_2" {{ 'selected' if form_data and form_data.team == 'Team_2' }}>Team 2</option>
+                                    <option value="Team_3" {{ 'selected' if form_data and form_data.team == 'Team_3' }}>Team 3</option>
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-4 mb-3">
+                                <label for="routing_status" class="form-label">Routing Status</label>
+                                <select class="form-select" id="routing_status" name="routing_status" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Routed" {{ 'selected' if form_data and form_data.routing_status == 'Routed' }}>Routed</option>
+                                    <option value="Misrouted" {{ 'selected' if form_data and form_data.routing_status == 'Misrouted' }}>Misrouted</option>
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-4 mb-3">
+                                <label for="screening_status" class="form-label">Screening Status</label>
+                                <select class="form-select" id="screening_status" name="screening_status" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Cleared" {{ 'selected' if form_data and form_data.screening_status == 'Cleared' }}>Cleared</option>
+                                    <option value="Manual Check" {{ 'selected' if form_data and form_data.screening_status == 'Manual Check' }}>Manual Check</option>
+                                    <option value="Held" {{ 'selected' if form_data and form_data.screening_status == 'Held' }}>Held</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">
+                                <i data-feather="activity"></i>
+                                Predict Departure Delay Risk
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div class="col-lg-6">
+            {% if result %}
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i data-feather="target"></i>
+                        Prediction Results
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <!-- Risk Level -->
+                    <div class="text-center mb-4">
+                        <div class="display-6 mb-2">
+                            {% if result.prediction == 1 %}
+                                <span class="text-danger">
+                                    <i data-feather="alert-triangle"></i>
+                                    HIGH DELAY RISK
+                                </span>
+                            {% else %}
+                                <span class="text-success">
+                                    <i data-feather="check-circle"></i>
+                                    LOW DELAY RISK
+                                </span>
+                            {% endif %}
+                        </div>
+                        <div class="text-muted">
+                            Late Load Risk Level
+                        </div>
+                    </div>
+
+                    <!-- Confidence Score -->
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Confidence</span>
+                            <span><strong>{{ "%.1f"|format(result.confidence) }}%</strong></span>
+                        </div>
+                        <div class="progress mb-2">
+                            <div class="progress-bar" role="progressbar" 
+                                 style="width: {{ result.confidence }}%">
+                            </div>
+                        </div>
+                        <small class="text-muted">Model confidence in this prediction</small>
+                    </div>
+
+                    <!-- Probability Breakdown -->
+                    <div class="row text-center">
+                        <div class="col-6">
+                            <div class="border rounded p-3">
+                                <div class="h4 text-success mb-1">{{ "%.1f"|format(result.low_risk_prob) }}%</div>
+                                <div class="text-muted small">On-Time Load</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="border rounded p-3">
+                                <div class="h4 text-danger mb-1">{{ "%.1f"|format(result.high_risk_prob) }}%</div>
+                                <div class="text-muted small">Late Load</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recommendation -->
+                    <div class="alert {% if result.prediction == 1 %}alert-warning{% else %}alert-success{% endif %} mt-4">
+                        <h6 class="alert-heading">
+                            <i data-feather="info"></i>
+                            Recommendation
+                        </h6>
+                        {% if result.prediction == 1 %}
+                            <p class="mb-0">
+                                <strong>High late load risk detected.</strong> Consider allocating additional resources, expediting screening processes, and notifying flight operations of potential delay. Monitor critical path items closely.
+                            </p>
+                        {% else %}
+                            <p class="mb-0">
+                                <strong>Low late load risk.</strong> Flight baggage loading is expected to proceed on schedule. Maintain standard operational procedures.
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="card">
+                <div class="card-body text-center">
+                    <i data-feather="clock" style="width: 64px; height: 64px;" class="text-muted mb-3"></i>
+                    <h5 class="text-muted">No Prediction Yet</h5>
+                    <p class="text-muted">Fill out the form and click "Predict Departure Delay Risk" to get your prediction results.</p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Information Section -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i data-feather="info"></i>
+                        About Departure Delay Prediction
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Model Features</h6>
+                            <ul class="list-unstyled">
+                                <li><i data-feather="check"></i> Flight-level load timing analysis</li>
+                                <li><i data-feather="check"></i> Team performance assessment</li>
+                                <li><i data-feather="check"></i> Routing and screening impact</li>
+                                <li><i data-feather="check"></i> Resource utilization patterns</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Risk Threshold</h6>
+                            <p>The model predicts <strong>High Risk</strong> when the late load rate is expected to exceed <strong>20%</strong> of flight bags.</p>
+                            
+                            <h6>Key Factors</h6>
+                            <ul class="list-unstyled">
+                                <li>• Load team efficiency and capacity</li>
+                                <li>• Baggage routing complexity</li>
+                                <li>• Security screening delays</li>
+                                <li>• Equipment turnaround times</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        feather.replace();
+    });
+</script>
+{% endblock %}

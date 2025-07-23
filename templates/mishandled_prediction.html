@@ -1,0 +1,248 @@
+{% extends "base.html" %}
+
+{% block title %}Mishandled Baggage Prediction - Baggage ML System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-5 mb-3">
+                <i data-feather="package"></i>
+                Mishandled Baggage Risk Prediction
+            </h1>
+            <p class="lead">Identify flights at risk of baggage mishandling to improve passenger satisfaction</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Input Form -->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i data-feather="briefcase"></i>
+                        Flight Baggage Information
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="total_bags" class="form-label">Total Bags</label>
+                                <input type="number" class="form-control" id="total_bags" name="total_bags" 
+                                       value="{{ form_data.total_bags if form_data else '' }}" 
+                                       min="1" step="1" required>
+                                <div class="form-text">Number of bags on the flight</div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="avg_delivery_delay" class="form-label">Avg Delivery Delay (min)</label>
+                                <input type="number" class="form-control" id="avg_delivery_delay" name="avg_delivery_delay" 
+                                       value="{{ form_data.avg_delivery_delay if form_data else '' }}" 
+                                       min="0" step="0.1" required>
+                                <div class="form-text">Average baggage delivery delay</div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="avg_transfer_count" class="form-label">Avg Transfer Count</label>
+                                <input type="number" class="form-control" id="avg_transfer_count" name="avg_transfer_count" 
+                                       value="{{ form_data.avg_transfer_count if form_data else '' }}" 
+                                       min="0" step="0.1" required>
+                                <div class="form-text">Average number of flight transfers</div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="transfer_risk_count" class="form-label">Transfer Risk Count</label>
+                                <input type="number" class="form-control" id="transfer_risk_count" name="transfer_risk_count" 
+                                       value="{{ form_data.transfer_risk_count if form_data else '' }}" 
+                                       min="0" step="1" required>
+                                <div class="form-text">Number of bags with transfer risk flags</div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="sensor_gap_count" class="form-label">Sensor Gap Count</label>
+                                <input type="number" class="form-control" id="sensor_gap_count" name="sensor_gap_count" 
+                                       value="{{ form_data.sensor_gap_count if form_data else '' }}" 
+                                       min="0" step="1" required>
+                                <div class="form-text">Number of bags with tracking gaps</div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="delivery_status" class="form-label">Primary Delivery Status</label>
+                                <select class="form-select" id="delivery_status" name="delivery_status" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Delivered" {{ 'selected' if form_data and form_data.delivery_status == 'Delivered' }}>Delivered</option>
+                                    <option value="Delayed" {{ 'selected' if form_data and form_data.delivery_status == 'Delayed' }}>Delayed</option>
+                                    <option value="Lost" {{ 'selected' if form_data and form_data.delivery_status == 'Lost' }}>Lost</option>
+                                    <option value="Damaged" {{ 'selected' if form_data and form_data.delivery_status == 'Damaged' }}>Damaged</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label for="sensor_data" class="form-label">Primary Sensor Data Quality</label>
+                                <select class="form-select" id="sensor_data" name="sensor_data" required>
+                                    <option value="">Select Quality</option>
+                                    <option value="Complete" {{ 'selected' if form_data and form_data.sensor_data == 'Complete' }}>Complete</option>
+                                    <option value="Partial Data" {{ 'selected' if form_data and form_data.sensor_data == 'Partial Data' }}>Partial Data</option>
+                                    <option value="Missing Data" {{ 'selected' if form_data and form_data.sensor_data == 'Missing Data' }}>Missing Data</option>
+                                    <option value="Sensor Malfunction" {{ 'selected' if form_data and form_data.sensor_data == 'Sensor Malfunction' }}>Sensor Malfunction</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">
+                                <i data-feather="activity"></i>
+                                Predict Mishandling Risk
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div class="col-lg-6">
+            {% if result %}
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i data-feather="target"></i>
+                        Prediction Results
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <!-- Risk Level -->
+                    <div class="text-center mb-4">
+                        <div class="display-6 mb-2">
+                            {% if result.prediction == 1 %}
+                                <span class="text-danger">
+                                    <i data-feather="alert-triangle"></i>
+                                    HIGH MISHANDLING RISK
+                                </span>
+                            {% else %}
+                                <span class="text-success">
+                                    <i data-feather="check-circle"></i>
+                                    LOW MISHANDLING RISK
+                                </span>
+                            {% endif %}
+                        </div>
+                        <div class="text-muted">
+                            Baggage Mishandling Risk Level
+                        </div>
+                    </div>
+
+                    <!-- Confidence Score -->
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Confidence</span>
+                            <span><strong>{{ "%.1f"|format(result.confidence) }}%</strong></span>
+                        </div>
+                        <div class="progress mb-2">
+                            <div class="progress-bar" role="progressbar" 
+                                 style="width: {{ result.confidence }}%">
+                            </div>
+                        </div>
+                        <small class="text-muted">Model confidence in this prediction</small>
+                    </div>
+
+                    <!-- Probability Breakdown -->
+                    <div class="row text-center">
+                        <div class="col-6">
+                            <div class="border rounded p-3">
+                                <div class="h4 text-success mb-1">{{ "%.1f"|format(result.low_risk_prob) }}%</div>
+                                <div class="text-muted small">Normal Handling</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="border rounded p-3">
+                                <div class="h4 text-danger mb-1">{{ "%.1f"|format(result.high_risk_prob) }}%</div>
+                                <div class="text-muted small">Mishandling Risk</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recommendation -->
+                    <div class="alert {% if result.prediction == 1 %}alert-warning{% else %}alert-success{% endif %} mt-4">
+                        <h6 class="alert-heading">
+                            <i data-feather="info"></i>
+                            Recommendation
+                        </h6>
+                        {% if result.prediction == 1 %}
+                            <p class="mb-0">
+                                <strong>High mishandling risk detected.</strong> Increase tracking attention, verify transfer procedures, check sensor functionality, and prepare proactive customer service measures. Consider manual verification for critical transfers.
+                            </p>
+                        {% else %}
+                            <p class="mb-0">
+                                <strong>Low mishandling risk.</strong> Baggage handling is expected to proceed normally. Continue standard tracking and handling procedures.
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="card">
+                <div class="card-body text-center">
+                    <i data-feather="package" style="width: 64px; height: 64px;" class="text-muted mb-3"></i>
+                    <h5 class="text-muted">No Prediction Yet</h5>
+                    <p class="text-muted">Fill out the form and click "Predict Mishandling Risk" to get your prediction results.</p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Information Section -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i data-feather="info"></i>
+                        About Mishandled Baggage Prediction
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Model Features</h6>
+                            <ul class="list-unstyled">
+                                <li><i data-feather="check"></i> Flight-level mishandling pattern analysis</li>
+                                <li><i data-feather="check"></i> Transfer complexity assessment</li>
+                                <li><i data-feather="check"></i> Sensor tracking quality monitoring</li>
+                                <li><i data-feather="check"></i> Historical delivery performance</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Risk Threshold</h6>
+                            <p>The model predicts <strong>High Risk</strong> when the mishandling rate is expected to exceed <strong>5%</strong> of flight bags.</p>
+                            
+                            <h6>Key Factors</h6>
+                            <ul class="list-unstyled">
+                                <li>• Number and complexity of transfers</li>
+                                <li>• Sensor tracking continuity</li>
+                                <li>• Historical delivery delays</li>
+                                <li>• System and process reliability</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        feather.replace();
+    });
+</script>
+{% endblock %}

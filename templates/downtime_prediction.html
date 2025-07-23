@@ -1,0 +1,252 @@
+{% extends "base.html" %}
+
+{% block title %}System Downtime Prediction - Baggage ML System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-5 mb-3">
+                <i data-feather="power"></i>
+                System Downtime Risk Prediction
+            </h1>
+            <p class="lead">Predict potential system downtime events to enable proactive maintenance</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Input Form -->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i data-feather="settings"></i>
+                        System Information
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="incident_count" class="form-label">Daily Incident Count</label>
+                                <input type="number" class="form-control" id="incident_count" name="incident_count" 
+                                       value="{{ form_data.incident_count if form_data else '' }}" 
+                                       min="0" step="1" required>
+                                <div class="form-text">Number of incidents in a day</div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="max_incident_duration" class="form-label">Max Incident Duration (min)</label>
+                                <input type="number" class="form-control" id="max_incident_duration" name="max_incident_duration" 
+                                       value="{{ form_data.max_incident_duration if form_data else '' }}" 
+                                       min="0" step="0.1" required>
+                                <div class="form-text">Longest incident duration</div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="avg_sla_compliance" class="form-label">Avg SLA Compliance</label>
+                                <input type="number" class="form-control" id="avg_sla_compliance" name="avg_sla_compliance" 
+                                       value="{{ form_data.avg_sla_compliance if form_data else '' }}" 
+                                       min="0" max="1" step="0.01" required>
+                                <div class="form-text">Average SLA compliance rate (0-1)</div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="avg_response_time" class="form-label">Avg Response Time (min)</label>
+                                <input type="number" class="form-control" id="avg_response_time" name="avg_response_time" 
+                                       value="{{ form_data.avg_response_time if form_data else '' }}" 
+                                       min="0" step="0.1" required>
+                                <div class="form-text">Average maintenance response time</div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="location" class="form-label">Location</label>
+                                <select class="form-select" id="location" name="location" required>
+                                    <option value="">Select Location</option>
+                                    <option value="Terminal 1" {{ 'selected' if form_data and form_data.location == 'Terminal 1' }}>Terminal 1</option>
+                                    <option value="Terminal 2" {{ 'selected' if form_data and form_data.location == 'Terminal 2' }}>Terminal 2</option>
+                                    <option value="Terminal 3" {{ 'selected' if form_data and form_data.location == 'Terminal 3' }}>Terminal 3</option>
+                                    <option value="Baggage Claim A" {{ 'selected' if form_data and form_data.location == 'Baggage Claim A' }}>Baggage Claim A</option>
+                                    <option value="Baggage Claim B" {{ 'selected' if form_data and form_data.location == 'Baggage Claim B' }}>Baggage Claim B</option>
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-4 mb-3">
+                                <label for="incident_type" class="form-label">Primary Incident Type</label>
+                                <select class="form-select" id="incident_type" name="incident_type" required>
+                                    <option value="">Select Type</option>
+                                    <option value="Belt Jam" {{ 'selected' if form_data and form_data.incident_type == 'Belt Jam' }}>Belt Jam</option>
+                                    <option value="Motor Overheat" {{ 'selected' if form_data and form_data.incident_type == 'Motor Overheat' }}>Motor Overheat</option>
+                                    <option value="Power Failure" {{ 'selected' if form_data and form_data.incident_type == 'Power Failure' }}>Power Failure</option>
+                                    <option value="Sensor Fault" {{ 'selected' if form_data and form_data.incident_type == 'Sensor Fault' }}>Sensor Fault</option>
+                                    <option value="Software Glitch" {{ 'selected' if form_data and form_data.incident_type == 'Software Glitch' }}>Software Glitch</option>
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-4 mb-3">
+                                <label for="root_cause" class="form-label">Root Cause</label>
+                                <select class="form-select" id="root_cause" name="root_cause" required>
+                                    <option value="">Select Cause</option>
+                                    <option value="Mechanical Failure (Belt/Motor)" {{ 'selected' if form_data and form_data.root_cause == 'Mechanical Failure (Belt/Motor)' }}>Mechanical Failure</option>
+                                    <option value="Electrical System Fault" {{ 'selected' if form_data and form_data.root_cause == 'Electrical System Fault' }}>Electrical Fault</option>
+                                    <option value="Software Malfunction" {{ 'selected' if form_data and form_data.root_cause == 'Software Malfunction' }}>Software Malfunction</option>
+                                    <option value="Sensor Malfunction/Calibration" {{ 'selected' if form_data and form_data.root_cause == 'Sensor Malfunction/Calibration' }}>Sensor Malfunction</option>
+                                    <option value="Human Error/Operational Fault" {{ 'selected' if form_data and form_data.root_cause == 'Human Error/Operational Fault' }}>Human Error</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">
+                                <i data-feather="activity"></i>
+                                Predict Downtime Risk
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div class="col-lg-6">
+            {% if result %}
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i data-feather="target"></i>
+                        Prediction Results
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <!-- Risk Level -->
+                    <div class="text-center mb-4">
+                        <div class="display-6 mb-2">
+                            {% if result.prediction == 1 %}
+                                <span class="text-danger">
+                                    <i data-feather="alert-triangle"></i>
+                                    HIGH DOWNTIME RISK
+                                </span>
+                            {% else %}
+                                <span class="text-success">
+                                    <i data-feather="check-circle"></i>
+                                    LOW DOWNTIME RISK
+                                </span>
+                            {% endif %}
+                        </div>
+                        <div class="text-muted">
+                            System Downtime Risk Level
+                        </div>
+                    </div>
+
+                    <!-- Confidence Score -->
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Confidence</span>
+                            <span><strong>{{ "%.1f"|format(result.confidence) }}%</strong></span>
+                        </div>
+                        <div class="progress mb-2">
+                            <div class="progress-bar" role="progressbar" 
+                                 style="width: {{ result.confidence }}%">
+                            </div>
+                        </div>
+                        <small class="text-muted">Model confidence in this prediction</small>
+                    </div>
+
+                    <!-- Probability Breakdown -->
+                    <div class="row text-center">
+                        <div class="col-6">
+                            <div class="border rounded p-3">
+                                <div class="h4 text-success mb-1">{{ "%.1f"|format(result.low_risk_prob) }}%</div>
+                                <div class="text-muted small">Low Risk</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="border rounded p-3">
+                                <div class="h4 text-danger mb-1">{{ "%.1f"|format(result.high_risk_prob) }}%</div>
+                                <div class="text-muted small">High Risk</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recommendation -->
+                    <div class="alert {% if result.prediction == 1 %}alert-warning{% else %}alert-success{% endif %} mt-4">
+                        <h6 class="alert-heading">
+                            <i data-feather="info"></i>
+                            Recommendation
+                        </h6>
+                        {% if result.prediction == 1 %}
+                            <p class="mb-0">
+                                <strong>High downtime risk detected.</strong> Schedule proactive maintenance, prepare backup systems, and alert operations teams. Consider reducing system load during maintenance window.
+                            </p>
+                        {% else %}
+                            <p class="mb-0">
+                                <strong>Low downtime risk.</strong> System operating within normal parameters. Continue regular monitoring and maintain preventive maintenance schedule.
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="card">
+                <div class="card-body text-center">
+                    <i data-feather="power" style="width: 64px; height: 64px;" class="text-muted mb-3"></i>
+                    <h5 class="text-muted">No Prediction Yet</h5>
+                    <p class="text-muted">Fill out the form and click "Predict Downtime Risk" to get your prediction results.</p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Information Section -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i data-feather="info"></i>
+                        About Downtime Risk Prediction
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Model Features</h6>
+                            <ul class="list-unstyled">
+                                <li><i data-feather="check"></i> Daily incident pattern analysis</li>
+                                <li><i data-feather="check"></i> SLA compliance tracking</li>
+                                <li><i data-feather="check"></i> Location-specific risk assessment</li>
+                                <li><i data-feather="check"></i> Root cause pattern recognition</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Risk Threshold</h6>
+                            <p>The model predicts <strong>High Risk</strong> when total daily downtime is expected to exceed <strong>60 minutes</strong>.</p>
+                            
+                            <h6>Key Factors</h6>
+                            <ul class="list-unstyled">
+                                <li>• Incident frequency and severity</li>
+                                <li>• Maintenance response efficiency</li>
+                                <li>• Historical failure patterns</li>
+                                <li>• Equipment type and location</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        feather.replace();
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,251 @@
+{% extends "base.html" %}
+
+{% block title %}Damage Risk Prediction - Baggage ML System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-5 mb-3">
+                <i data-feather="alert-triangle"></i>
+                Baggage Damage Risk Prediction
+            </h1>
+            <p class="lead">Predict the likelihood of baggage damage for flights based on operational factors</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Input Form -->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i data-feather="edit"></i>
+                        Flight Information
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="total_bags" class="form-label">Total Bags</label>
+                                <input type="number" class="form-control" id="total_bags" name="total_bags" 
+                                       value="{{ form_data.total_bags if form_data else '' }}" 
+                                       min="1" step="1" required>
+                                <div class="form-text">Number of bags on the flight</div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="avg_report_time" class="form-label">Avg Report Time (min)</label>
+                                <input type="number" class="form-control" id="avg_report_time" name="avg_report_time" 
+                                       value="{{ form_data.avg_report_time if form_data else '' }}" 
+                                       min="0" step="0.1" required>
+                                <div class="form-text">Average time to report damage</div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="avg_repeat_incidents" class="form-label">Avg Repeat Incidents</label>
+                                <input type="number" class="form-control" id="avg_repeat_incidents" name="avg_repeat_incidents" 
+                                       value="{{ form_data.avg_repeat_incidents if form_data else '' }}" 
+                                       min="0" step="0.1" required>
+                                <div class="form-text">Average repeat incidents in damage zone</div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="avg_report_hour" class="form-label">Avg Report Hour</label>
+                                <input type="number" class="form-control" id="avg_report_hour" name="avg_report_hour" 
+                                       value="{{ form_data.avg_report_hour if form_data else '' }}" 
+                                       min="0" max="23" step="0.1" required>
+                                <div class="form-text">Average hour when damage is reported (0-23)</div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="damage_zone" class="form-label">Primary Damage Zone</label>
+                                <select class="form-select" id="damage_zone" name="damage_zone" required>
+                                    <option value="">Select Zone</option>
+                                    <option value="Baggage Sorting System" {{ 'selected' if form_data and form_data.damage_zone == 'Baggage Sorting System' }}>Baggage Sorting System</option>
+                                    <option value="Check-in Counter/Baggage Drop" {{ 'selected' if form_data and form_data.damage_zone == 'Check-in Counter/Baggage Drop' }}>Check-in Counter/Baggage Drop</option>
+                                    <option value="Aircraft Loading/Unloading Area" {{ 'selected' if form_data and form_data.damage_zone == 'Aircraft Loading/Unloading Area' }}>Aircraft Loading/Unloading Area</option>
+                                    <option value="Arrival Baggage Claim Belt" {{ 'selected' if form_data and form_data.damage_zone == 'Arrival Baggage Claim Belt' }}>Arrival Baggage Claim Belt</option>
+                                    <option value="Transfer Baggage Re-Check" {{ 'selected' if form_data and form_data.damage_zone == 'Transfer Baggage Re-Check' }}>Transfer Baggage Re-Check</option>
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-4 mb-3">
+                                <label for="baggage_type" class="form-label">Primary Baggage Type</label>
+                                <select class="form-select" id="baggage_type" name="baggage_type" required>
+                                    <option value="">Select Type</option>
+                                    <option value="Regular" {{ 'selected' if form_data and form_data.baggage_type == 'Regular' }}>Regular</option>
+                                    <option value="Hard Shell" {{ 'selected' if form_data and form_data.baggage_type == 'Hard Shell' }}>Hard Shell</option>
+                                    <option value="Soft Shell" {{ 'selected' if form_data and form_data.baggage_type == 'Soft Shell' }}>Soft Shell</option>
+                                    <option value="Fragile" {{ 'selected' if form_data and form_data.baggage_type == 'Fragile' }}>Fragile</option>
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-4 mb-3">
+                                <label for="damage_type" class="form-label">Primary Damage Type</label>
+                                <select class="form-select" id="damage_type" name="damage_type" required>
+                                    <option value="">Select Type</option>
+                                    <option value="Scratches/Scuffs" {{ 'selected' if form_data and form_data.damage_type == 'Scratches/Scuffs' }}>Scratches/Scuffs</option>
+                                    <option value="Missing Handle" {{ 'selected' if form_data and form_data.damage_type == 'Missing Handle' }}>Missing Handle</option>
+                                    <option value="Broken Wheel" {{ 'selected' if form_data and form_data.damage_type == 'Broken Wheel' }}>Broken Wheel</option>
+                                    <option value="Cracked Shell" {{ 'selected' if form_data and form_data.damage_type == 'Cracked Shell' }}>Cracked Shell</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">
+                                <i data-feather="activity"></i>
+                                Predict Damage Risk
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div class="col-lg-6">
+            {% if result %}
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i data-feather="target"></i>
+                        Prediction Results
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <!-- Risk Level -->
+                    <div class="text-center mb-4">
+                        <div class="display-6 mb-2">
+                            {% if result.prediction == 1 %}
+                                <span class="text-danger">
+                                    <i data-feather="alert-triangle"></i>
+                                    HIGH RISK
+                                </span>
+                            {% else %}
+                                <span class="text-success">
+                                    <i data-feather="check-circle"></i>
+                                    LOW RISK
+                                </span>
+                            {% endif %}
+                        </div>
+                        <div class="text-muted">
+                            Damage Risk Level
+                        </div>
+                    </div>
+
+                    <!-- Confidence Score -->
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Confidence</span>
+                            <span><strong>{{ "%.1f"|format(result.confidence) }}%</strong></span>
+                        </div>
+                        <div class="progress mb-2">
+                            <div class="progress-bar" role="progressbar" 
+                                 style="width: {{ result.confidence }}%">
+                            </div>
+                        </div>
+                        <small class="text-muted">Model confidence in this prediction</small>
+                    </div>
+
+                    <!-- Probability Breakdown -->
+                    <div class="row text-center">
+                        <div class="col-6">
+                            <div class="border rounded p-3">
+                                <div class="h4 text-success mb-1">{{ "%.1f"|format(result.low_risk_prob) }}%</div>
+                                <div class="text-muted small">Low Risk</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="border rounded p-3">
+                                <div class="h4 text-danger mb-1">{{ "%.1f"|format(result.high_risk_prob) }}%</div>
+                                <div class="text-muted small">High Risk</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recommendation -->
+                    <div class="alert {% if result.prediction == 1 %}alert-warning{% else %}alert-success{% endif %} mt-4">
+                        <h6 class="alert-heading">
+                            <i data-feather="info"></i>
+                            Recommendation
+                        </h6>
+                        {% if result.prediction == 1 %}
+                            <p class="mb-0">
+                                <strong>High damage risk detected.</strong> Consider implementing additional protective measures, reviewing handling procedures in the primary damage zone, and increasing quality checks.
+                            </p>
+                        {% else %}
+                            <p class="mb-0">
+                                <strong>Low damage risk.</strong> Current operational parameters suggest normal damage rates. Continue monitoring and maintain standard procedures.
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="card">
+                <div class="card-body text-center">
+                    <i data-feather="activity" style="width: 64px; height: 64px;" class="text-muted mb-3"></i>
+                    <h5 class="text-muted">No Prediction Yet</h5>
+                    <p class="text-muted">Fill out the form and click "Predict Damage Risk" to get your prediction results.</p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Information Section -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i data-feather="info"></i>
+                        About Damage Risk Prediction
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Model Features</h6>
+                            <ul class="list-unstyled">
+                                <li><i data-feather="check"></i> Flight-level aggregation for operational insights</li>
+                                <li><i data-feather="check"></i> Historical damage patterns analysis</li>
+                                <li><i data-feather="check"></i> Zone-specific risk assessment</li>
+                                <li><i data-feather="check"></i> Real-time confidence scoring</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Risk Threshold</h6>
+                            <p>The model predicts <strong>High Risk</strong> when the expected damage rate exceeds <strong>10%</strong> of total bags on the flight.</p>
+                            
+                            <h6>Key Factors</h6>
+                            <ul class="list-unstyled">
+                                <li>• Baggage handling zone characteristics</li>
+                                <li>• Historical repeat incidents in area</li>
+                                <li>• Time patterns of damage reporting</li>
+                                <li>• Baggage type vulnerability</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Initialize feather icons
+    document.addEventListener('DOMContentLoaded', function() {
+        feather.replace();
+    });
+</script>
+{% endblock %}

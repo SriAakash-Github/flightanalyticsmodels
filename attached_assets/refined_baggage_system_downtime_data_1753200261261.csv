@@ -1,0 +1,501 @@
+System_ID,Incident_Start_Time,Incident_End_Time,Incident_Type,Maintenance_Team_Response_Time,Location_Affected,Root_Cause_Code,Sensor_Logs_During_Incident,Incident_Duration_Minutes,Week,Calculated_Incident_Duration_Minutes,SLA_Compliance_Downtime,Incident_Hour,Incident_Day_of_Week,Incident_Month
+SYS120,2025-04-13 14:20:00,2025-04-13 14:30:00,Power Failure,1.62,Terminal 2,Mechanical Failure (Belt/Motor),92,10,15,10.0,0,14,6,4
+SYS472,2025-03-16 01:27:00,2025-03-16 01:33:00,Sensor Fault,3.4,Terminal 2,Sensor Malfunction/Calibration,33,6,11,6.0,1,1,6,3
+SYS376,2025-05-11 22:12:00,2025-05-11 22:18:00,Software Glitch,3.47,Terminal 2,Software Malfunction,67,6,19,6.0,1,22,6,5
+SYS847,2025-01-22 04:12:00,2025-01-22 04:18:00,Motor Overheat,1.09,Terminal 2,Mechanical Failure (Belt/Motor),68,6,4,6.0,1,4,2,1
+SYS786,2025-06-19 11:39:00,2025-06-19 11:45:00,Power Failure,3.47,Terminal 1,Human Error/Operational Fault,64,6,25,6.0,1,11,3,6
+SYS584,2025-03-05 19:14:00,2025-03-05 19:16:00,Motor Overheat,3.43,Baggage Claim B,Human Error/Operational Fault,30,2,10,2.0,1,19,2,3
+SYS445,2025-03-14 02:46:00,2025-03-14 02:48:00,Motor Overheat,1.39,Terminal 1,Mechanical Failure (Belt/Motor),93,2,11,2.0,1,2,4,3
+SYS554,2025-04-02 23:10:00,2025-04-02 23:21:00,Belt Jam,3.44,Baggage Claim A,Electrical System Fault,17,11,14,11.0,0,23,2,4
+SYS971,2025-06-24 00:34:00,2025-06-24 00:41:00,Belt Jam,4.02,Terminal 2,Mechanical Failure (Belt/Motor),15,7,26,7.0,1,0,1,6
+SYS871,2025-02-23 18:49:00,2025-02-23 18:58:00,Motor Overheat,1.74,Baggage Claim A,Software Malfunction,72,9,8,9.0,1,18,6,2
+SYS369,2025-05-26 12:09:00,2025-05-26 12:10:00,Software Glitch,3.91,Baggage Claim B,Software Malfunction,24,1,22,1.0,1,12,0,5
+SYS848,2025-02-09 11:59:00,2025-02-09 12:04:00,Software Glitch,2.09,Terminal 2,Software Malfunction,62,5,6,5.0,1,11,6,2
+SYS140,2025-01-24 03:36:00,2025-01-24 03:45:00,Motor Overheat,2.19,Baggage Claim A,Sensor Malfunction/Calibration,54,9,4,9.0,1,3,4,1
+SYS443,2025-03-06 08:40:00,2025-03-06 08:43:00,Power Failure,2.58,Baggage Claim B,Sensor Malfunction/Calibration,17,3,10,3.0,1,8,3,3
+SYS518,2025-03-04 19:22:00,2025-03-04 19:32:00,Belt Jam,4.09,Terminal 2,Sensor Malfunction/Calibration,14,10,10,10.0,0,19,1,3
+SYS234,2025-02-10 17:31:00,2025-02-10 17:36:00,Sensor Fault,4.4,Baggage Claim A,Software Malfunction,21,5,7,5.0,1,17,0,2
+SYS827,2025-06-11 17:36:00,2025-06-11 17:43:00,Motor Overheat,3.66,Baggage Claim B,Human Error/Operational Fault,53,7,24,7.0,1,17,2,6
+SYS646,2025-04-14 12:05:00,2025-04-14 12:12:00,Belt Jam,2.89,Baggage Claim B,Human Error/Operational Fault,56,7,16,7.0,1,12,0,4
+SYS970,2025-05-11 17:08:00,2025-05-11 17:20:00,Belt Jam,1.16,Terminal 3,Electrical System Fault,88,12,19,12.0,0,17,6,5
+SYS560,2025-01-15 14:51:00,2025-01-15 15:00:00,Power Failure,1.81,Baggage Claim B,Mechanical Failure (Belt/Motor),61,9,3,9.0,1,14,2,1
+SYS270,2025-04-06 08:04:00,2025-04-06 08:10:00,Power Failure,1.81,Terminal 1,Sensor Malfunction/Calibration,22,6,14,6.0,1,8,6,4
+SYS185,2025-06-09 21:06:00,2025-06-09 21:10:00,Belt Jam,4.52,Terminal 2,Human Error/Operational Fault,51,4,24,4.0,1,21,0,6
+SYS655,2025-02-14 16:52:00,2025-02-14 17:01:00,Software Glitch,2.67,Terminal 2,Electrical System Fault,71,9,7,9.0,1,16,4,2
+SYS572,2025-03-16 22:51:00,2025-03-16 23:00:00,Power Failure,2.27,Terminal 3,Software Malfunction,10,9,11,9.0,1,22,6,3
+SYS844,2025-05-01 21:46:00,2025-05-01 21:58:00,Belt Jam,2.22,Baggage Claim B,Electrical System Fault,79,12,18,12.0,0,21,3,5
+SYS417,2025-06-04 10:48:00,2025-06-04 10:55:00,Software Glitch,1.89,Terminal 3,Electrical System Fault,60,7,23,7.0,1,10,2,6
+SYS707,2025-06-21 11:03:00,2025-06-21 11:11:00,Power Failure,3.23,Terminal 3,Human Error/Operational Fault,61,8,25,8.0,1,11,5,6
+SYS663,2025-04-23 07:21:00,2025-04-23 07:30:00,Belt Jam,1.99,Baggage Claim A,Human Error/Operational Fault,48,9,17,9.0,1,7,2,4
+SYS180,2025-05-10 23:30:00,2025-05-10 23:35:00,Motor Overheat,2.07,Terminal 3,Electrical System Fault,11,5,19,5.0,1,23,5,5
+SYS665,2025-05-10 03:39:00,2025-05-10 03:44:00,Belt Jam,1.13,Terminal 2,Software Malfunction,10,5,19,5.0,1,3,5,5
+SYS809,2025-05-27 19:13:00,2025-05-27 19:14:00,Belt Jam,1.97,Terminal 2,Human Error/Operational Fault,77,1,22,1.0,1,19,1,5
+SYS866,2025-05-03 06:40:00,2025-05-03 06:52:00,Software Glitch,4.21,Terminal 3,Mechanical Failure (Belt/Motor),78,12,18,12.0,0,6,5,5
+SYS243,2025-04-26 03:17:00,2025-04-26 03:29:00,Belt Jam,4.34,Terminal 2,Electrical System Fault,68,12,17,12.0,0,3,5,4
+SYS448,2025-03-11 07:43:00,2025-03-11 07:50:00,Belt Jam,4.43,Terminal 3,Sensor Malfunction/Calibration,68,7,11,7.0,1,7,1,3
+SYS247,2025-06-13 06:42:00,2025-06-13 06:53:00,Software Glitch,3.58,Baggage Claim B,Software Malfunction,61,11,24,11.0,0,6,4,6
+SYS437,2025-06-10 09:10:00,2025-06-10 09:20:00,Power Failure,4.35,Terminal 2,Electrical System Fault,20,10,24,10.0,0,9,1,6
+SYS362,2025-06-27 02:30:00,2025-06-27 02:44:00,Motor Overheat,3.64,Terminal 3,Electrical System Fault,99,14,26,14.0,0,2,4,6
+SYS671,2025-04-22 16:56:00,2025-04-22 17:05:00,Software Glitch,2.04,Terminal 2,Mechanical Failure (Belt/Motor),10,9,17,9.0,1,16,1,4
+SYS198,2025-02-17 04:13:00,2025-02-17 04:17:00,Motor Overheat,3.8,Terminal 1,Mechanical Failure (Belt/Motor),89,4,8,4.0,1,4,0,2
+SYS251,2025-05-11 06:43:00,2025-05-11 06:55:00,Belt Jam,2.62,Baggage Claim A,Software Malfunction,42,12,19,12.0,0,6,6,5
+SYS326,2025-06-01 10:27:00,2025-06-01 10:36:00,Power Failure,2.49,Baggage Claim A,Electrical System Fault,98,9,22,9.0,1,10,6,6
+SYS960,2025-04-09 02:32:00,2025-04-09 02:43:00,Power Failure,2.14,Terminal 1,Human Error/Operational Fault,91,11,15,11.0,0,2,2,4
+SYS260,2025-02-23 19:46:00,2025-02-23 19:50:00,Power Failure,1.07,Terminal 3,Software Malfunction,23,4,8,4.0,1,19,6,2
+SYS603,2025-01-21 13:35:00,2025-01-21 13:45:00,Belt Jam,3.6,Terminal 3,Electrical System Fault,16,10,4,10.0,0,13,1,1
+SYS982,2025-05-25 10:39:00,2025-05-25 10:44:00,Motor Overheat,3.55,Terminal 1,Software Malfunction,31,5,21,5.0,1,10,6,5
+SYS329,2025-06-07 00:37:00,2025-06-07 00:45:00,Motor Overheat,2.57,Baggage Claim B,Electrical System Fault,63,8,23,8.0,1,0,5,6
+SYS708,2025-01-08 21:46:00,2025-01-08 21:48:00,Motor Overheat,3.31,Terminal 1,Sensor Malfunction/Calibration,73,2,2,2.0,1,21,2,1
+SYS758,2025-03-02 13:35:00,2025-03-02 13:40:00,Belt Jam,3.29,Terminal 2,Electrical System Fault,73,5,9,5.0,1,13,6,3
+SYS145,2025-02-18 00:16:00,2025-02-18 00:24:00,Power Failure,4.66,Baggage Claim B,Sensor Malfunction/Calibration,46,8,8,8.0,1,0,1,2
+SYS596,2025-01-24 22:52:00,2025-01-24 23:01:00,Power Failure,3.21,Baggage Claim B,Software Malfunction,69,9,4,9.0,1,22,4,1
+SYS260,2025-04-26 03:10:00,2025-04-26 03:15:00,Belt Jam,2.27,Baggage Claim B,Mechanical Failure (Belt/Motor),27,5,17,5.0,1,3,5,4
+SYS669,2025-01-25 09:25:00,2025-01-25 09:31:00,Belt Jam,4.72,Terminal 2,Software Malfunction,55,6,4,6.0,1,9,5,1
+SYS485,2025-01-24 10:25:00,2025-01-24 10:33:00,Motor Overheat,2.29,Terminal 3,Mechanical Failure (Belt/Motor),42,8,4,8.0,1,10,4,1
+SYS275,2025-05-17 04:05:00,2025-05-17 04:10:00,Sensor Fault,3.21,Baggage Claim A,Software Malfunction,51,5,20,5.0,1,4,5,5
+SYS924,2025-01-26 15:20:00,2025-01-26 15:26:00,Motor Overheat,3.51,Terminal 2,Mechanical Failure (Belt/Motor),29,6,4,6.0,1,15,6,1
+SYS499,2025-03-06 08:31:00,2025-03-06 08:40:00,Sensor Fault,1.2,Baggage Claim B,Electrical System Fault,96,9,10,9.0,1,8,3,3
+SYS953,2025-05-23 18:35:00,2025-05-23 18:38:00,Sensor Fault,2.31,Baggage Claim B,Human Error/Operational Fault,67,3,21,3.0,1,18,4,5
+SYS224,2025-03-04 20:13:00,2025-03-04 20:27:00,Belt Jam,4.36,Terminal 2,Sensor Malfunction/Calibration,67,14,10,14.0,0,20,1,3
+SYS363,2025-03-27 05:04:00,2025-03-27 05:09:00,Sensor Fault,4.08,Baggage Claim A,Mechanical Failure (Belt/Motor),14,5,13,5.0,1,5,3,3
+SYS873,2025-04-13 20:19:00,2025-04-13 20:26:00,Software Glitch,1.21,Terminal 1,Mechanical Failure (Belt/Motor),56,7,15,7.0,1,20,6,4
+SYS886,2025-04-09 13:42:00,2025-04-09 13:50:00,Belt Jam,2.76,Terminal 3,Mechanical Failure (Belt/Motor),64,8,15,8.0,1,13,2,4
+SYS573,2025-03-31 12:20:00,2025-03-31 12:27:00,Belt Jam,4.85,Terminal 2,Electrical System Fault,32,7,14,7.0,1,12,0,3
+SYS733,2025-05-07 23:36:00,2025-05-07 23:43:00,Software Glitch,1.63,Terminal 3,Software Malfunction,43,7,19,7.0,1,23,2,5
+SYS659,2025-04-06 19:01:00,2025-04-06 19:09:00,Software Glitch,1.73,Terminal 3,Sensor Malfunction/Calibration,10,8,14,8.0,1,19,6,4
+SYS889,2025-01-16 20:12:00,2025-01-16 20:21:00,Motor Overheat,3.92,Terminal 1,Human Error/Operational Fault,76,9,3,9.0,1,20,3,1
+SYS755,2025-03-17 02:33:00,2025-03-17 02:46:00,Sensor Fault,1.63,Terminal 3,Human Error/Operational Fault,95,13,12,13.0,0,2,0,3
+SYS303,2025-01-29 20:43:00,2025-01-29 20:52:00,Power Failure,1.07,Baggage Claim B,Electrical System Fault,99,9,5,9.0,1,20,2,1
+SYS650,2025-06-25 05:40:00,2025-06-25 05:50:00,Sensor Fault,2.39,Baggage Claim A,Mechanical Failure (Belt/Motor),32,10,26,10.0,0,5,2,6
+SYS861,2025-01-10 18:43:00,2025-01-10 18:51:00,Motor Overheat,4.73,Terminal 1,Human Error/Operational Fault,10,8,2,8.0,1,18,4,1
+SYS115,2025-03-10 08:35:00,2025-03-10 08:42:00,Software Glitch,1.28,Terminal 1,Sensor Malfunction/Calibration,11,7,11,7.0,1,8,0,3
+SYS789,2025-05-08 02:39:00,2025-05-08 02:47:00,Power Failure,3.29,Terminal 1,Sensor Malfunction/Calibration,42,8,19,8.0,1,2,3,5
+SYS790,2025-06-10 15:56:00,2025-06-10 16:06:00,Software Glitch,4.28,Terminal 3,Software Malfunction,21,10,24,10.0,0,15,1,6
+SYS875,2025-03-08 19:51:00,2025-03-08 19:58:00,Power Failure,2.54,Baggage Claim A,Human Error/Operational Fault,83,7,10,7.0,1,19,5,3
+SYS517,2025-03-31 17:01:00,2025-03-31 17:10:00,Sensor Fault,2.04,Baggage Claim A,Electrical System Fault,16,9,14,9.0,1,17,0,3
+SYS376,2025-02-27 18:18:00,2025-02-27 18:27:00,Motor Overheat,4.87,Baggage Claim B,Software Malfunction,45,9,9,9.0,1,18,3,2
+SYS291,2025-05-18 07:36:00,2025-05-18 07:46:00,Sensor Fault,3.3,Terminal 3,Electrical System Fault,45,10,20,10.0,0,7,6,5
+SYS316,2025-04-06 11:02:00,2025-04-06 11:15:00,Software Glitch,1.95,Terminal 1,Mechanical Failure (Belt/Motor),39,13,14,13.0,0,11,6,4
+SYS695,2025-01-17 01:01:00,2025-01-17 01:08:00,Sensor Fault,4.31,Baggage Claim A,Software Malfunction,95,7,3,7.0,1,1,4,1
+SYS834,2025-05-21 11:38:00,2025-05-21 11:47:00,Power Failure,4.8,Terminal 1,Mechanical Failure (Belt/Motor),92,9,21,9.0,1,11,2,5
+SYS984,2025-04-21 02:23:00,2025-04-21 02:31:00,Software Glitch,1.37,Terminal 3,Human Error/Operational Fault,21,8,17,8.0,1,2,0,4
+SYS250,2025-01-25 15:47:00,2025-01-25 15:58:00,Belt Jam,4.13,Baggage Claim B,Sensor Malfunction/Calibration,48,11,4,11.0,0,15,5,1
+SYS285,2025-04-19 17:45:00,2025-04-19 17:55:00,Power Failure,1.23,Terminal 2,Mechanical Failure (Belt/Motor),14,10,16,10.0,0,17,5,4
+SYS850,2025-06-12 20:38:00,2025-06-12 20:51:00,Sensor Fault,1.57,Terminal 1,Electrical System Fault,83,13,24,13.0,0,20,3,6
+SYS329,2025-05-25 21:16:00,2025-05-25 21:25:00,Software Glitch,1.34,Baggage Claim B,Human Error/Operational Fault,22,9,21,9.0,1,21,6,5
+SYS293,2025-06-17 02:49:00,2025-06-17 03:00:00,Power Failure,1.33,Baggage Claim A,Human Error/Operational Fault,46,11,25,11.0,0,2,1,6
+SYS747,2025-06-15 05:38:00,2025-06-15 05:45:00,Belt Jam,2.5,Baggage Claim B,Sensor Malfunction/Calibration,74,7,24,7.0,1,5,6,6
+SYS400,2025-03-27 08:19:00,2025-03-27 08:28:00,Motor Overheat,4.01,Terminal 2,Sensor Malfunction/Calibration,79,9,13,9.0,1,8,3,3
+SYS975,2025-06-08 07:24:00,2025-06-08 07:31:00,Motor Overheat,3.23,Terminal 3,Software Malfunction,83,7,23,7.0,1,7,6,6
+SYS853,2025-03-31 00:38:00,2025-03-31 00:41:00,Power Failure,2.87,Terminal 1,Software Malfunction,67,3,14,3.0,1,0,0,3
+SYS555,2025-05-28 07:55:00,2025-05-28 08:02:00,Sensor Fault,1.47,Terminal 2,Software Malfunction,48,7,22,7.0,1,7,2,5
+SYS290,2025-01-01 06:26:00,2025-01-01 06:35:00,Belt Jam,2.91,Terminal 3,Human Error/Operational Fault,34,9,1,9.0,1,6,2,1
+SYS216,2025-02-25 15:28:00,2025-02-25 15:36:00,Sensor Fault,4.85,Baggage Claim A,Electrical System Fault,53,8,9,8.0,1,15,1,2
+SYS179,2025-06-22 11:11:00,2025-06-22 11:13:00,Belt Jam,3.11,Baggage Claim B,Sensor Malfunction/Calibration,84,2,25,2.0,1,11,6,6
+SYS758,2025-06-13 20:50:00,2025-06-13 21:00:00,Power Failure,4.88,Baggage Claim A,Sensor Malfunction/Calibration,27,10,24,10.0,0,20,4,6
+SYS612,2025-02-16 20:56:00,2025-02-16 21:02:00,Sensor Fault,3.51,Baggage Claim A,Human Error/Operational Fault,12,6,7,6.0,1,20,6,2
+SYS111,2025-05-24 07:50:00,2025-05-24 07:55:00,Power Failure,4.83,Terminal 2,Software Malfunction,25,5,21,5.0,1,7,5,5
+SYS221,2025-04-12 16:11:00,2025-04-12 16:18:00,Belt Jam,1.75,Terminal 2,Electrical System Fault,99,7,15,7.0,1,16,5,4
+SYS415,2025-05-16 11:37:00,2025-05-16 11:43:00,Software Glitch,3.33,Terminal 3,Mechanical Failure (Belt/Motor),50,6,20,6.0,1,11,4,5
+SYS851,2025-06-04 08:21:00,2025-06-04 08:34:00,Motor Overheat,1.65,Terminal 1,Software Malfunction,55,13,23,13.0,0,8,2,6
+SYS489,2025-02-04 21:16:00,2025-02-04 21:20:00,Sensor Fault,4.8,Baggage Claim B,Mechanical Failure (Belt/Motor),78,4,6,4.0,1,21,1,2
+SYS900,2025-02-16 07:29:00,2025-02-16 07:33:00,Sensor Fault,4.11,Baggage Claim B,Electrical System Fault,27,4,7,4.0,1,7,6,2
+SYS381,2025-06-26 14:12:00,2025-06-26 14:21:00,Software Glitch,2.52,Terminal 1,Mechanical Failure (Belt/Motor),95,9,26,9.0,1,14,3,6
+SYS204,2025-02-28 13:14:00,2025-02-28 13:20:00,Power Failure,2.66,Terminal 3,Mechanical Failure (Belt/Motor),10,6,9,6.0,1,13,4,2
+SYS617,2025-05-29 13:42:00,2025-05-29 13:50:00,Motor Overheat,3.77,Baggage Claim B,Software Malfunction,78,8,22,8.0,1,13,3,5
+SYS776,2025-04-05 12:50:00,2025-04-05 13:03:00,Motor Overheat,4.03,Terminal 3,Human Error/Operational Fault,92,13,14,13.0,0,12,5,4
+SYS177,2025-05-25 18:28:00,2025-05-25 18:37:00,Software Glitch,1.82,Baggage Claim A,Mechanical Failure (Belt/Motor),10,9,21,9.0,1,18,6,5
+SYS980,2025-02-20 11:24:00,2025-02-20 11:28:00,Power Failure,4.03,Terminal 2,Electrical System Fault,43,4,8,4.0,1,11,3,2
+SYS171,2025-04-02 01:34:00,2025-04-02 01:44:00,Sensor Fault,1.09,Baggage Claim B,Sensor Malfunction/Calibration,43,10,14,10.0,0,1,2,4
+SYS153,2025-04-28 12:50:00,2025-04-28 13:02:00,Sensor Fault,4.87,Terminal 2,Software Malfunction,66,12,18,12.0,0,12,0,4
+SYS866,2025-05-25 10:23:00,2025-05-25 10:31:00,Motor Overheat,1.12,Terminal 2,Mechanical Failure (Belt/Motor),88,8,21,8.0,1,10,6,5
+SYS405,2025-03-26 09:37:00,2025-03-26 09:46:00,Belt Jam,3.36,Baggage Claim A,Electrical System Fault,39,9,13,9.0,1,9,2,3
+SYS534,2025-03-20 14:18:00,2025-03-20 14:26:00,Power Failure,4.62,Baggage Claim A,Human Error/Operational Fault,61,8,12,8.0,1,14,3,3
+SYS205,2025-06-15 16:23:00,2025-06-15 16:30:00,Motor Overheat,4.45,Terminal 1,Electrical System Fault,14,7,24,7.0,1,16,6,6
+SYS237,2025-01-29 14:59:00,2025-01-29 15:09:00,Belt Jam,4.71,Terminal 2,Electrical System Fault,83,10,5,10.0,0,14,2,1
+SYS549,2025-01-17 16:23:00,2025-01-17 16:31:00,Motor Overheat,2.32,Terminal 2,Sensor Malfunction/Calibration,52,8,3,8.0,1,16,4,1
+SYS860,2025-04-25 01:50:00,2025-04-25 01:57:00,Sensor Fault,2.84,Terminal 1,Mechanical Failure (Belt/Motor),89,7,17,7.0,1,1,4,4
+SYS795,2025-04-05 23:17:00,2025-04-05 23:22:00,Motor Overheat,2.65,Terminal 1,Sensor Malfunction/Calibration,76,5,14,5.0,1,23,5,4
+SYS771,2025-06-04 01:32:00,2025-06-04 01:42:00,Belt Jam,1.69,Baggage Claim B,Human Error/Operational Fault,60,10,23,10.0,0,1,2,6
+SYS633,2025-05-27 17:08:00,2025-05-27 17:12:00,Sensor Fault,1.35,Terminal 3,Sensor Malfunction/Calibration,10,4,22,4.0,1,17,1,5
+SYS623,2025-05-13 03:52:00,2025-05-13 03:56:00,Motor Overheat,1.83,Baggage Claim A,Human Error/Operational Fault,43,4,20,4.0,1,3,1,5
+SYS893,2025-06-26 18:21:00,2025-06-26 18:25:00,Power Failure,4.2,Baggage Claim A,Sensor Malfunction/Calibration,95,4,26,4.0,1,18,3,6
+SYS206,2025-02-25 05:49:00,2025-02-25 05:54:00,Power Failure,4.68,Baggage Claim A,Sensor Malfunction/Calibration,70,5,9,5.0,1,5,1,2
+SYS402,2025-03-22 17:29:00,2025-03-22 17:38:00,Belt Jam,2.48,Terminal 2,Human Error/Operational Fault,95,9,12,9.0,1,17,5,3
+SYS127,2025-01-14 07:53:00,2025-01-14 08:01:00,Software Glitch,2.48,Terminal 3,Electrical System Fault,97,8,3,8.0,1,7,1,1
+SYS849,2025-05-10 06:04:00,2025-05-10 06:13:00,Power Failure,4.0,Terminal 3,Human Error/Operational Fault,27,9,19,9.0,1,6,5,5
+SYS982,2025-02-07 12:18:00,2025-02-07 12:24:00,Motor Overheat,1.97,Baggage Claim B,Human Error/Operational Fault,98,6,6,6.0,1,12,4,2
+SYS372,2025-04-29 08:04:00,2025-04-29 08:13:00,Software Glitch,1.85,Terminal 2,Human Error/Operational Fault,99,9,18,9.0,1,8,1,4
+SYS636,2025-05-06 13:31:00,2025-05-06 13:35:00,Motor Overheat,4.56,Baggage Claim A,Software Malfunction,93,4,19,4.0,1,13,1,5
+SYS210,2025-01-25 23:37:00,2025-01-25 23:45:00,Belt Jam,3.34,Terminal 2,Sensor Malfunction/Calibration,95,8,4,8.0,1,23,5,1
+SYS875,2025-02-03 10:22:00,2025-02-03 10:34:00,Software Glitch,3.35,Baggage Claim A,Sensor Malfunction/Calibration,92,12,6,12.0,0,10,0,2
+SYS419,2025-02-11 07:04:00,2025-02-11 07:14:00,Sensor Fault,3.28,Terminal 1,Sensor Malfunction/Calibration,65,10,7,10.0,0,7,1,2
+SYS840,2025-02-28 14:36:00,2025-02-28 14:43:00,Software Glitch,4.73,Terminal 1,Human Error/Operational Fault,62,7,9,7.0,1,14,4,2
+SYS615,2025-05-30 04:36:00,2025-05-30 04:43:00,Software Glitch,4.4,Terminal 1,Electrical System Fault,71,7,22,7.0,1,4,4,5
+SYS706,2025-03-03 05:49:00,2025-03-03 05:55:00,Belt Jam,1.22,Terminal 3,Mechanical Failure (Belt/Motor),18,6,10,6.0,1,5,0,3
+SYS946,2025-05-11 04:02:00,2025-05-11 04:12:00,Belt Jam,4.27,Baggage Claim A,Software Malfunction,60,10,19,10.0,0,4,6,5
+SYS946,2025-03-03 03:13:00,2025-03-03 03:21:00,Software Glitch,3.14,Terminal 2,Electrical System Fault,35,8,10,8.0,1,3,0,3
+SYS217,2025-06-28 02:52:00,2025-06-28 02:58:00,Sensor Fault,3.84,Baggage Claim A,Mechanical Failure (Belt/Motor),93,6,26,6.0,1,2,5,6
+SYS239,2025-01-20 01:52:00,2025-01-20 02:02:00,Software Glitch,1.46,Terminal 1,Mechanical Failure (Belt/Motor),99,10,4,10.0,0,1,0,1
+SYS610,2025-05-22 05:19:00,2025-05-22 05:27:00,Motor Overheat,2.92,Baggage Claim B,Electrical System Fault,12,8,21,8.0,1,5,3,5
+SYS789,2025-06-10 15:01:00,2025-06-10 15:06:00,Power Failure,2.82,Baggage Claim A,Software Malfunction,14,5,24,5.0,1,15,1,6
+SYS695,2025-05-31 02:51:00,2025-05-31 03:01:00,Sensor Fault,2.02,Terminal 2,Human Error/Operational Fault,82,10,22,10.0,0,2,5,5
+SYS649,2025-01-17 12:56:00,2025-01-17 13:01:00,Software Glitch,2.65,Terminal 1,Human Error/Operational Fault,58,5,3,5.0,1,12,4,1
+SYS984,2025-03-10 05:17:00,2025-03-10 05:23:00,Motor Overheat,3.92,Terminal 3,Sensor Malfunction/Calibration,18,6,11,6.0,1,5,0,3
+SYS646,2025-06-11 09:47:00,2025-06-11 10:00:00,Software Glitch,4.71,Terminal 2,Human Error/Operational Fault,73,13,24,13.0,0,9,2,6
+SYS369,2025-05-30 22:52:00,2025-05-30 23:01:00,Motor Overheat,4.2,Terminal 3,Mechanical Failure (Belt/Motor),44,9,22,9.0,1,22,4,5
+SYS950,2025-06-14 00:04:00,2025-06-14 00:11:00,Sensor Fault,3.66,Terminal 2,Electrical System Fault,35,7,24,7.0,1,0,5,6
+SYS501,2025-03-03 02:11:00,2025-03-03 02:21:00,Belt Jam,4.27,Terminal 3,Software Malfunction,48,10,10,10.0,0,2,0,3
+SYS790,2025-04-14 13:19:00,2025-04-14 13:22:00,Software Glitch,3.5,Terminal 1,Human Error/Operational Fault,32,3,16,3.0,1,13,0,4
+SYS602,2025-03-04 02:22:00,2025-03-04 02:24:00,Belt Jam,3.13,Baggage Claim B,Human Error/Operational Fault,62,2,10,2.0,1,2,1,3
+SYS138,2025-04-14 01:43:00,2025-04-14 01:54:00,Power Failure,1.47,Terminal 3,Software Malfunction,15,11,16,11.0,0,1,0,4
+SYS599,2025-03-08 06:30:00,2025-03-08 06:41:00,Sensor Fault,4.18,Terminal 3,Software Malfunction,38,11,10,11.0,0,6,5,3
+SYS330,2025-02-02 07:57:00,2025-02-02 08:08:00,Motor Overheat,3.29,Baggage Claim B,Sensor Malfunction/Calibration,38,11,5,11.0,0,7,6,2
+SYS388,2025-02-07 18:40:00,2025-02-07 18:51:00,Sensor Fault,1.13,Terminal 2,Sensor Malfunction/Calibration,95,11,6,11.0,0,18,4,2
+SYS734,2025-03-07 08:36:00,2025-03-07 08:46:00,Belt Jam,4.02,Terminal 3,Sensor Malfunction/Calibration,47,10,10,10.0,0,8,4,3
+SYS795,2025-05-21 19:42:00,2025-05-21 19:48:00,Sensor Fault,3.01,Terminal 2,Electrical System Fault,17,6,21,6.0,1,19,2,5
+SYS146,2025-01-05 19:40:00,2025-01-05 19:41:00,Power Failure,2.64,Baggage Claim A,Mechanical Failure (Belt/Motor),54,1,1,1.0,1,19,6,1
+SYS391,2025-05-10 23:54:00,2025-05-11 00:06:00,Sensor Fault,3.86,Terminal 2,Electrical System Fault,36,12,19,12.0,0,23,5,5
+SYS353,2025-03-10 00:10:00,2025-03-10 00:21:00,Power Failure,4.63,Terminal 1,Electrical System Fault,47,11,11,11.0,0,0,0,3
+SYS462,2025-05-14 11:51:00,2025-05-14 11:54:00,Power Failure,1.61,Baggage Claim B,Software Malfunction,22,3,20,3.0,1,11,2,5
+SYS309,2025-04-14 15:57:00,2025-04-14 16:03:00,Power Failure,3.45,Terminal 2,Electrical System Fault,69,6,16,6.0,1,15,0,4
+SYS987,2025-06-20 16:43:00,2025-06-20 16:56:00,Software Glitch,1.09,Terminal 1,Electrical System Fault,40,13,25,13.0,0,16,4,6
+SYS150,2025-05-02 16:53:00,2025-05-02 17:03:00,Power Failure,3.95,Terminal 3,Software Malfunction,49,10,18,10.0,0,16,4,5
+SYS504,2025-02-10 12:58:00,2025-02-10 13:03:00,Software Glitch,1.66,Baggage Claim B,Mechanical Failure (Belt/Motor),45,5,7,5.0,1,12,0,2
+SYS930,2025-02-26 17:04:00,2025-02-26 17:12:00,Motor Overheat,2.25,Terminal 1,Human Error/Operational Fault,49,8,9,8.0,1,17,2,2
+SYS301,2025-05-23 11:00:00,2025-05-23 11:12:00,Power Failure,4.21,Terminal 1,Software Malfunction,35,12,21,12.0,0,11,4,5
+SYS343,2025-06-18 09:34:00,2025-06-18 09:40:00,Power Failure,3.15,Terminal 3,Electrical System Fault,84,6,25,6.0,1,9,2,6
+SYS446,2025-02-07 06:25:00,2025-02-07 06:28:00,Motor Overheat,2.81,Terminal 2,Mechanical Failure (Belt/Motor),52,3,6,3.0,1,6,4,2
+SYS278,2025-04-18 12:42:00,2025-04-18 12:43:00,Motor Overheat,1.99,Terminal 1,Human Error/Operational Fault,34,1,16,1.0,1,12,4,4
+SYS765,2025-06-29 11:49:00,2025-06-29 11:55:00,Software Glitch,1.05,Terminal 2,Electrical System Fault,94,6,26,6.0,1,11,6,6
+SYS948,2025-02-18 16:06:00,2025-02-18 16:17:00,Power Failure,4.84,Baggage Claim B,Electrical System Fault,58,11,8,11.0,0,16,1,2
+SYS240,2025-05-28 05:41:00,2025-05-28 05:57:00,Motor Overheat,2.59,Terminal 3,Electrical System Fault,60,16,22,16.0,0,5,2,5
+SYS822,2025-05-03 15:51:00,2025-05-03 15:59:00,Software Glitch,2.4,Terminal 1,Electrical System Fault,39,8,18,8.0,1,15,5,5
+SYS523,2025-01-29 22:08:00,2025-01-29 22:16:00,Sensor Fault,3.35,Terminal 1,Human Error/Operational Fault,10,8,5,8.0,1,22,2,1
+SYS274,2025-03-19 23:14:00,2025-03-19 23:20:00,Software Glitch,3.11,Baggage Claim B,Sensor Malfunction/Calibration,47,6,12,6.0,1,23,2,3
+SYS154,2025-06-28 13:50:00,2025-06-28 13:57:00,Software Glitch,4.78,Baggage Claim B,Mechanical Failure (Belt/Motor),41,7,26,7.0,1,13,5,6
+SYS479,2025-01-10 02:41:00,2025-01-10 02:47:00,Software Glitch,4.2,Baggage Claim A,Software Malfunction,64,6,2,6.0,1,2,4,1
+SYS412,2025-02-01 20:01:00,2025-02-01 20:08:00,Software Glitch,1.89,Baggage Claim A,Electrical System Fault,97,7,5,7.0,1,20,5,2
+SYS860,2025-03-13 17:57:00,2025-03-13 18:08:00,Motor Overheat,4.2,Terminal 2,Sensor Malfunction/Calibration,76,11,11,11.0,0,17,3,3
+SYS187,2025-02-20 16:46:00,2025-02-20 16:57:00,Power Failure,3.89,Baggage Claim B,Human Error/Operational Fault,55,11,8,11.0,0,16,3,2
+SYS599,2025-05-24 07:31:00,2025-05-24 07:41:00,Power Failure,3.67,Terminal 3,Mechanical Failure (Belt/Motor),94,10,21,10.0,0,7,5,5
+SYS429,2025-05-22 12:14:00,2025-05-22 12:20:00,Sensor Fault,1.34,Terminal 1,Electrical System Fault,32,6,21,6.0,1,12,3,5
+SYS723,2025-03-26 02:26:00,2025-03-26 02:33:00,Motor Overheat,1.73,Baggage Claim A,Sensor Malfunction/Calibration,45,7,13,7.0,1,2,2,3
+SYS808,2025-01-29 11:39:00,2025-01-29 11:49:00,Power Failure,2.37,Terminal 3,Sensor Malfunction/Calibration,11,10,5,10.0,0,11,2,1
+SYS631,2025-04-29 06:35:00,2025-04-29 06:44:00,Power Failure,3.5,Terminal 3,Software Malfunction,47,9,18,9.0,1,6,1,4
+SYS605,2025-05-17 20:49:00,2025-05-17 20:56:00,Software Glitch,4.05,Terminal 1,Sensor Malfunction/Calibration,33,7,20,7.0,1,20,5,5
+SYS257,2025-03-22 11:53:00,2025-03-22 12:02:00,Power Failure,2.95,Baggage Claim B,Mechanical Failure (Belt/Motor),96,9,12,9.0,1,11,5,3
+SYS625,2025-05-08 12:15:00,2025-05-08 12:22:00,Sensor Fault,3.97,Baggage Claim A,Mechanical Failure (Belt/Motor),75,7,19,7.0,1,12,3,5
+SYS300,2025-01-25 23:02:00,2025-01-25 23:10:00,Motor Overheat,1.56,Terminal 2,Mechanical Failure (Belt/Motor),13,8,4,8.0,1,23,5,1
+SYS904,2025-06-03 07:21:00,2025-06-03 07:30:00,Motor Overheat,1.07,Terminal 2,Software Malfunction,27,9,23,9.0,1,7,1,6
+SYS455,2025-05-08 00:41:00,2025-05-08 00:51:00,Power Failure,2.99,Terminal 2,Electrical System Fault,43,10,19,10.0,0,0,3,5
+SYS728,2025-01-17 19:36:00,2025-01-17 19:49:00,Sensor Fault,1.04,Baggage Claim B,Software Malfunction,94,13,3,13.0,0,19,4,1
+SYS745,2025-01-27 21:50:00,2025-01-27 21:58:00,Software Glitch,3.93,Baggage Claim B,Mechanical Failure (Belt/Motor),21,8,5,8.0,1,21,0,1
+SYS575,2025-02-22 07:34:00,2025-02-22 07:46:00,Motor Overheat,4.08,Terminal 2,Software Malfunction,55,12,8,12.0,0,7,5,2
+SYS921,2025-03-05 02:09:00,2025-03-05 02:18:00,Power Failure,3.95,Terminal 3,Sensor Malfunction/Calibration,60,9,10,9.0,1,2,2,3
+SYS395,2025-02-05 23:14:00,2025-02-05 23:20:00,Belt Jam,2.75,Terminal 3,Sensor Malfunction/Calibration,45,6,6,6.0,1,23,2,2
+SYS906,2025-04-23 03:06:00,2025-04-23 03:10:00,Power Failure,3.44,Baggage Claim A,Human Error/Operational Fault,63,4,17,4.0,1,3,2,4
+SYS168,2025-04-08 00:54:00,2025-04-08 01:03:00,Sensor Fault,2.94,Terminal 1,Mechanical Failure (Belt/Motor),45,9,15,9.0,1,0,1,4
+SYS590,2025-05-28 21:07:00,2025-05-28 21:16:00,Sensor Fault,4.39,Terminal 1,Sensor Malfunction/Calibration,82,9,22,9.0,1,21,2,5
+SYS316,2025-06-03 01:12:00,2025-06-03 01:21:00,Software Glitch,3.82,Terminal 1,Sensor Malfunction/Calibration,51,9,23,9.0,1,1,1,6
+SYS902,2025-01-25 17:42:00,2025-01-25 17:49:00,Belt Jam,4.28,Baggage Claim B,Software Malfunction,53,7,4,7.0,1,17,5,1
+SYS143,2025-06-28 01:41:00,2025-06-28 01:44:00,Software Glitch,4.23,Terminal 3,Sensor Malfunction/Calibration,58,3,26,3.0,1,1,5,6
+SYS668,2025-01-17 05:29:00,2025-01-17 05:40:00,Software Glitch,2.78,Terminal 2,Software Malfunction,56,11,3,11.0,0,5,4,1
+SYS584,2025-01-12 22:21:00,2025-01-12 22:33:00,Sensor Fault,3.77,Baggage Claim B,Mechanical Failure (Belt/Motor),79,12,2,12.0,0,22,6,1
+SYS188,2025-01-25 07:45:00,2025-01-25 07:55:00,Power Failure,3.59,Baggage Claim B,Electrical System Fault,68,10,4,10.0,0,7,5,1
+SYS893,2025-06-03 08:08:00,2025-06-03 08:17:00,Motor Overheat,3.27,Terminal 3,Human Error/Operational Fault,16,9,23,9.0,1,8,1,6
+SYS728,2025-01-14 05:34:00,2025-01-14 05:43:00,Power Failure,3.92,Terminal 2,Electrical System Fault,57,9,3,9.0,1,5,1,1
+SYS471,2025-03-13 13:46:00,2025-03-13 13:54:00,Sensor Fault,4.38,Terminal 3,Human Error/Operational Fault,27,8,11,8.0,1,13,3,3
+SYS625,2025-04-13 21:36:00,2025-04-13 21:46:00,Software Glitch,3.39,Terminal 3,Mechanical Failure (Belt/Motor),69,10,15,10.0,0,21,6,4
+SYS282,2025-02-14 18:41:00,2025-02-14 18:49:00,Sensor Fault,2.62,Terminal 1,Mechanical Failure (Belt/Motor),48,8,7,8.0,1,18,4,2
+SYS615,2025-01-15 08:16:00,2025-01-15 08:27:00,Belt Jam,4.16,Terminal 3,Electrical System Fault,34,11,3,11.0,0,8,2,1
+SYS207,2025-05-21 12:01:00,2025-05-21 12:02:00,Motor Overheat,1.93,Terminal 1,Human Error/Operational Fault,64,1,21,1.0,1,12,2,5
+SYS513,2025-06-19 09:05:00,2025-06-19 09:15:00,Sensor Fault,1.0,Baggage Claim A,Sensor Malfunction/Calibration,22,10,25,10.0,0,9,3,6
+SYS344,2025-05-21 21:37:00,2025-05-21 21:43:00,Power Failure,2.92,Terminal 1,Human Error/Operational Fault,25,6,21,6.0,1,21,2,5
+SYS458,2025-05-01 04:25:00,2025-05-01 04:37:00,Software Glitch,3.09,Baggage Claim A,Software Malfunction,74,12,18,12.0,0,4,3,5
+SYS423,2025-06-26 00:02:00,2025-06-26 00:04:00,Power Failure,3.86,Baggage Claim B,Software Malfunction,46,2,26,2.0,1,0,3,6
+SYS804,2025-06-02 07:11:00,2025-06-02 07:18:00,Sensor Fault,4.64,Baggage Claim A,Human Error/Operational Fault,88,7,23,7.0,1,7,0,6
+SYS239,2025-03-14 06:38:00,2025-03-14 06:51:00,Software Glitch,4.83,Baggage Claim B,Mechanical Failure (Belt/Motor),46,13,11,13.0,0,6,4,3
+SYS479,2025-03-02 15:38:00,2025-03-02 15:43:00,Power Failure,2.67,Terminal 3,Mechanical Failure (Belt/Motor),65,5,9,5.0,1,15,6,3
+SYS325,2025-03-04 22:05:00,2025-03-04 22:15:00,Sensor Fault,1.67,Terminal 2,Mechanical Failure (Belt/Motor),61,10,10,10.0,0,22,1,3
+SYS984,2025-01-04 22:13:00,2025-01-04 22:22:00,Belt Jam,4.32,Terminal 3,Software Malfunction,83,9,1,9.0,1,22,5,1
+SYS605,2025-04-17 03:45:00,2025-04-17 03:52:00,Sensor Fault,4.12,Baggage Claim B,Electrical System Fault,15,7,16,7.0,1,3,3,4
+SYS146,2025-01-05 00:53:00,2025-01-05 01:01:00,Power Failure,1.87,Terminal 3,Electrical System Fault,18,8,1,8.0,1,0,6,1
+SYS161,2025-04-09 17:23:00,2025-04-09 17:35:00,Sensor Fault,4.99,Terminal 3,Software Malfunction,12,12,15,12.0,0,17,2,4
+SYS219,2025-06-09 13:00:00,2025-06-09 13:06:00,Belt Jam,3.99,Terminal 2,Electrical System Fault,98,6,24,6.0,1,13,0,6
+SYS716,2025-03-14 09:39:00,2025-03-14 09:44:00,Sensor Fault,2.56,Terminal 1,Electrical System Fault,38,5,11,5.0,1,9,4,3
+SYS837,2025-05-17 20:18:00,2025-05-17 20:26:00,Power Failure,4.45,Terminal 1,Human Error/Operational Fault,18,8,20,8.0,1,20,5,5
+SYS223,2025-02-09 21:24:00,2025-02-09 21:29:00,Power Failure,2.49,Baggage Claim B,Electrical System Fault,81,5,6,5.0,1,21,6,2
+SYS701,2025-05-13 19:59:00,2025-05-13 20:10:00,Sensor Fault,3.13,Baggage Claim A,Human Error/Operational Fault,46,11,20,11.0,0,19,1,5
+SYS422,2025-03-01 16:12:00,2025-03-01 16:23:00,Power Failure,2.39,Terminal 2,Electrical System Fault,49,11,9,11.0,0,16,5,3
+SYS361,2025-04-01 21:52:00,2025-04-01 22:00:00,Belt Jam,3.09,Baggage Claim B,Human Error/Operational Fault,89,8,14,8.0,1,21,1,4
+SYS444,2025-06-17 01:31:00,2025-06-17 01:41:00,Sensor Fault,4.72,Terminal 3,Electrical System Fault,72,10,25,10.0,0,1,1,6
+SYS799,2025-06-04 07:01:00,2025-06-04 07:11:00,Sensor Fault,1.63,Baggage Claim A,Sensor Malfunction/Calibration,54,10,23,10.0,0,7,2,6
+SYS769,2025-02-27 12:40:00,2025-02-27 12:47:00,Software Glitch,4.63,Terminal 1,Mechanical Failure (Belt/Motor),91,7,9,7.0,1,12,3,2
+SYS817,2025-04-10 21:21:00,2025-04-10 21:26:00,Belt Jam,4.03,Terminal 1,Software Malfunction,21,5,15,5.0,1,21,3,4
+SYS332,2025-02-08 20:47:00,2025-02-08 20:54:00,Sensor Fault,3.53,Terminal 3,Human Error/Operational Fault,69,7,6,7.0,1,20,5,2
+SYS774,2025-03-29 06:04:00,2025-03-29 06:10:00,Sensor Fault,1.51,Baggage Claim B,Mechanical Failure (Belt/Motor),92,6,13,6.0,1,6,5,3
+SYS511,2025-06-07 09:45:00,2025-06-07 09:57:00,Belt Jam,3.53,Baggage Claim B,Mechanical Failure (Belt/Motor),46,12,23,12.0,0,9,5,6
+SYS963,2025-01-22 20:19:00,2025-01-22 20:26:00,Belt Jam,4.08,Baggage Claim A,Software Malfunction,77,7,4,7.0,1,20,2,1
+SYS804,2025-01-17 08:43:00,2025-01-17 08:51:00,Motor Overheat,1.23,Baggage Claim B,Mechanical Failure (Belt/Motor),91,8,3,8.0,1,8,4,1
+SYS803,2025-02-19 21:33:00,2025-02-19 21:39:00,Software Glitch,3.7,Baggage Claim B,Mechanical Failure (Belt/Motor),85,6,8,6.0,1,21,2,2
+SYS106,2025-06-13 12:42:00,2025-06-13 12:51:00,Sensor Fault,1.26,Terminal 3,Electrical System Fault,42,9,24,9.0,1,12,4,6
+SYS178,2025-05-14 14:38:00,2025-05-14 14:44:00,Sensor Fault,4.28,Baggage Claim B,Sensor Malfunction/Calibration,84,6,20,6.0,1,14,2,5
+SYS986,2025-02-27 12:17:00,2025-02-27 12:21:00,Motor Overheat,4.3,Baggage Claim B,Software Malfunction,84,4,9,4.0,1,12,3,2
+SYS786,2025-04-26 19:13:00,2025-04-26 19:20:00,Motor Overheat,3.72,Baggage Claim A,Mechanical Failure (Belt/Motor),31,7,17,7.0,1,19,5,4
+SYS968,2025-01-27 14:08:00,2025-01-27 14:17:00,Belt Jam,3.55,Terminal 2,Electrical System Fault,15,9,5,9.0,1,14,0,1
+SYS606,2025-05-27 23:30:00,2025-05-27 23:39:00,Motor Overheat,2.64,Baggage Claim B,Human Error/Operational Fault,47,9,22,9.0,1,23,1,5
+SYS370,2025-01-15 19:45:00,2025-01-15 19:49:00,Belt Jam,2.89,Baggage Claim A,Sensor Malfunction/Calibration,36,4,3,4.0,1,19,2,1
+SYS529,2025-03-13 18:03:00,2025-03-13 18:15:00,Motor Overheat,1.81,Terminal 3,Mechanical Failure (Belt/Motor),62,12,11,12.0,0,18,3,3
+SYS298,2025-01-08 09:50:00,2025-01-08 10:03:00,Belt Jam,3.5,Terminal 2,Software Malfunction,73,13,2,13.0,0,9,2,1
+SYS635,2025-06-21 11:32:00,2025-06-21 11:33:00,Belt Jam,4.68,Terminal 1,Human Error/Operational Fault,12,1,25,1.0,1,11,5,6
+SYS372,2025-05-28 08:46:00,2025-05-28 08:51:00,Software Glitch,3.43,Terminal 3,Sensor Malfunction/Calibration,93,5,22,5.0,1,8,2,5
+SYS930,2025-01-09 16:56:00,2025-01-09 17:04:00,Software Glitch,3.61,Baggage Claim B,Electrical System Fault,11,8,2,8.0,1,16,3,1
+SYS171,2025-03-29 09:43:00,2025-03-29 09:50:00,Software Glitch,2.86,Baggage Claim B,Electrical System Fault,73,7,13,7.0,1,9,5,3
+SYS594,2025-03-23 23:09:00,2025-03-23 23:11:00,Motor Overheat,3.4,Baggage Claim B,Mechanical Failure (Belt/Motor),41,2,12,2.0,1,23,6,3
+SYS790,2025-01-11 22:04:00,2025-01-11 22:13:00,Sensor Fault,1.42,Baggage Claim B,Human Error/Operational Fault,26,9,2,9.0,1,22,5,1
+SYS145,2025-03-17 14:48:00,2025-03-17 14:57:00,Software Glitch,1.57,Terminal 3,Sensor Malfunction/Calibration,89,9,12,9.0,1,14,0,3
+SYS341,2025-02-23 18:29:00,2025-02-23 18:35:00,Power Failure,2.31,Terminal 3,Sensor Malfunction/Calibration,11,6,8,6.0,1,18,6,2
+SYS215,2025-02-02 09:48:00,2025-02-02 09:53:00,Software Glitch,2.43,Terminal 3,Sensor Malfunction/Calibration,75,5,5,5.0,1,9,6,2
+SYS242,2025-06-15 14:30:00,2025-06-15 14:40:00,Sensor Fault,1.8,Terminal 1,Sensor Malfunction/Calibration,53,10,24,10.0,0,14,6,6
+SYS734,2025-02-18 05:16:00,2025-02-18 05:21:00,Sensor Fault,1.13,Terminal 3,Software Malfunction,15,5,8,5.0,1,5,1,2
+SYS815,2025-03-14 23:02:00,2025-03-14 23:05:00,Sensor Fault,4.48,Terminal 3,Human Error/Operational Fault,59,3,11,3.0,1,23,4,3
+SYS183,2025-04-02 22:21:00,2025-04-02 22:32:00,Sensor Fault,2.36,Baggage Claim A,Electrical System Fault,16,11,14,11.0,0,22,2,4
+SYS509,2025-03-25 03:27:00,2025-03-25 03:39:00,Power Failure,2.92,Terminal 2,Electrical System Fault,50,12,13,12.0,0,3,1,3
+SYS111,2025-04-16 00:13:00,2025-04-16 00:22:00,Software Glitch,1.99,Terminal 3,Electrical System Fault,22,9,16,9.0,1,0,2,4
+SYS849,2025-01-25 22:04:00,2025-01-25 22:07:00,Sensor Fault,2.35,Terminal 3,Electrical System Fault,17,3,4,3.0,1,22,5,1
+SYS794,2025-04-29 05:08:00,2025-04-29 05:19:00,Sensor Fault,1.17,Baggage Claim A,Sensor Malfunction/Calibration,53,11,18,11.0,0,5,1,4
+SYS411,2025-03-23 15:13:00,2025-03-23 15:17:00,Motor Overheat,4.9,Baggage Claim B,Software Malfunction,12,4,12,4.0,1,15,6,3
+SYS134,2025-06-05 12:34:00,2025-06-05 12:46:00,Motor Overheat,1.88,Terminal 1,Electrical System Fault,63,12,23,12.0,0,12,3,6
+SYS258,2025-04-07 15:02:00,2025-04-07 15:13:00,Power Failure,2.66,Terminal 3,Human Error/Operational Fault,33,11,15,11.0,0,15,0,4
+SYS615,2025-05-28 13:24:00,2025-05-28 13:32:00,Motor Overheat,3.94,Terminal 3,Software Malfunction,29,8,22,8.0,1,13,2,5
+SYS216,2025-06-01 15:46:00,2025-06-01 15:49:00,Motor Overheat,2.58,Baggage Claim A,Human Error/Operational Fault,75,3,22,3.0,1,15,6,6
+SYS873,2025-03-20 15:31:00,2025-03-20 15:45:00,Power Failure,3.62,Terminal 3,Human Error/Operational Fault,67,14,12,14.0,0,15,3,3
+SYS120,2025-05-05 21:31:00,2025-05-05 21:37:00,Motor Overheat,3.93,Baggage Claim B,Electrical System Fault,35,6,19,6.0,1,21,0,5
+SYS851,2025-01-08 01:39:00,2025-01-08 01:40:00,Sensor Fault,3.41,Terminal 1,Human Error/Operational Fault,51,1,2,1.0,1,1,2,1
+SYS417,2025-06-21 08:45:00,2025-06-21 08:53:00,Power Failure,1.39,Baggage Claim A,Mechanical Failure (Belt/Motor),23,8,25,8.0,1,8,5,6
+SYS842,2025-03-25 02:09:00,2025-03-25 02:21:00,Sensor Fault,1.65,Terminal 3,Electrical System Fault,98,12,13,12.0,0,2,1,3
+SYS775,2025-01-28 01:05:00,2025-01-28 01:18:00,Power Failure,4.88,Terminal 3,Software Malfunction,56,13,5,13.0,0,1,1,1
+SYS109,2025-01-31 23:38:00,2025-01-31 23:51:00,Motor Overheat,1.29,Terminal 2,Human Error/Operational Fault,23,13,5,13.0,0,23,4,1
+SYS375,2025-03-21 14:03:00,2025-03-21 14:10:00,Belt Jam,3.35,Baggage Claim B,Mechanical Failure (Belt/Motor),85,7,12,7.0,1,14,4,3
+SYS675,2025-01-01 05:12:00,2025-01-01 05:24:00,Software Glitch,2.44,Terminal 1,Electrical System Fault,37,12,1,12.0,0,5,2,1
+SYS264,2025-05-01 18:50:00,2025-05-01 19:01:00,Motor Overheat,4.13,Baggage Claim A,Software Malfunction,53,11,18,11.0,0,18,3,5
+SYS466,2025-02-25 02:35:00,2025-02-25 02:47:00,Software Glitch,4.47,Terminal 2,Sensor Malfunction/Calibration,70,12,9,12.0,0,2,1,2
+SYS119,2025-05-28 05:33:00,2025-05-28 05:41:00,Belt Jam,1.21,Terminal 3,Software Malfunction,10,8,22,8.0,1,5,2,5
+SYS297,2025-04-29 17:38:00,2025-04-29 17:44:00,Power Failure,1.72,Terminal 3,Human Error/Operational Fault,68,6,18,6.0,1,17,1,4
+SYS589,2025-03-10 19:44:00,2025-03-10 19:50:00,Sensor Fault,2.59,Terminal 3,Mechanical Failure (Belt/Motor),97,6,11,6.0,1,19,0,3
+SYS316,2025-02-12 02:05:00,2025-02-12 02:13:00,Software Glitch,3.56,Baggage Claim A,Sensor Malfunction/Calibration,66,8,7,8.0,1,2,2,2
+SYS527,2025-02-08 20:46:00,2025-02-08 20:54:00,Sensor Fault,3.13,Baggage Claim B,Human Error/Operational Fault,32,8,6,8.0,1,20,5,2
+SYS435,2025-05-08 05:07:00,2025-05-08 05:10:00,Motor Overheat,4.76,Terminal 2,Mechanical Failure (Belt/Motor),17,3,19,3.0,1,5,3,5
+SYS457,2025-03-26 02:08:00,2025-03-26 02:14:00,Software Glitch,4.47,Terminal 3,Human Error/Operational Fault,95,6,13,6.0,1,2,2,3
+SYS410,2025-06-24 20:16:00,2025-06-24 20:25:00,Power Failure,4.91,Baggage Claim A,Sensor Malfunction/Calibration,52,9,26,9.0,1,20,1,6
+SYS402,2025-06-07 01:53:00,2025-06-07 02:03:00,Motor Overheat,3.28,Terminal 1,Mechanical Failure (Belt/Motor),85,10,23,10.0,0,1,5,6
+SYS913,2025-03-13 05:44:00,2025-03-13 05:50:00,Sensor Fault,4.67,Baggage Claim A,Mechanical Failure (Belt/Motor),10,6,11,6.0,1,5,3,3
+SYS168,2025-05-27 21:50:00,2025-05-27 21:55:00,Motor Overheat,3.31,Terminal 2,Software Malfunction,71,5,22,5.0,1,21,1,5
+SYS780,2025-03-04 19:44:00,2025-03-04 19:57:00,Belt Jam,4.97,Terminal 1,Electrical System Fault,22,13,10,13.0,0,19,1,3
+SYS709,2025-03-14 09:48:00,2025-03-14 09:54:00,Power Failure,2.62,Terminal 3,Electrical System Fault,13,6,11,6.0,1,9,4,3
+SYS553,2025-04-12 00:18:00,2025-04-12 00:25:00,Belt Jam,4.61,Terminal 1,Sensor Malfunction/Calibration,22,7,15,7.0,1,0,5,4
+SYS921,2025-01-23 14:10:00,2025-01-23 14:17:00,Power Failure,3.6,Terminal 2,Human Error/Operational Fault,94,7,4,7.0,1,14,3,1
+SYS175,2025-05-23 18:08:00,2025-05-23 18:19:00,Software Glitch,3.44,Baggage Claim B,Sensor Malfunction/Calibration,24,11,21,11.0,0,18,4,5
+SYS835,2025-05-29 13:47:00,2025-05-29 14:02:00,Power Failure,2.49,Baggage Claim A,Electrical System Fault,53,15,22,15.0,0,13,3,5
+SYS966,2025-04-12 21:30:00,2025-04-12 21:41:00,Power Failure,1.67,Terminal 3,Software Malfunction,87,11,15,11.0,0,21,5,4
+SYS893,2025-03-15 16:01:00,2025-03-15 16:02:00,Belt Jam,4.81,Baggage Claim B,Mechanical Failure (Belt/Motor),75,1,11,1.0,1,16,5,3
+SYS320,2025-06-05 10:28:00,2025-06-05 10:34:00,Belt Jam,2.36,Terminal 3,Mechanical Failure (Belt/Motor),21,6,23,6.0,1,10,3,6
+SYS882,2025-05-13 05:03:00,2025-05-13 05:14:00,Sensor Fault,2.58,Baggage Claim B,Electrical System Fault,96,11,20,11.0,0,5,1,5
+SYS463,2025-03-11 08:17:00,2025-03-11 08:32:00,Software Glitch,4.82,Terminal 3,Mechanical Failure (Belt/Motor),30,15,11,15.0,0,8,1,3
+SYS814,2025-05-31 10:18:00,2025-05-31 10:25:00,Motor Overheat,2.52,Terminal 1,Human Error/Operational Fault,77,7,22,7.0,1,10,5,5
+SYS569,2025-01-21 02:20:00,2025-01-21 02:29:00,Sensor Fault,1.78,Terminal 2,Mechanical Failure (Belt/Motor),87,9,4,9.0,1,2,1,1
+SYS638,2025-05-05 16:03:00,2025-05-05 16:08:00,Power Failure,4.72,Baggage Claim A,Electrical System Fault,37,5,19,5.0,1,16,0,5
+SYS205,2025-02-04 19:27:00,2025-02-04 19:32:00,Motor Overheat,3.44,Baggage Claim A,Mechanical Failure (Belt/Motor),27,5,6,5.0,1,19,1,2
+SYS558,2025-01-02 09:48:00,2025-01-02 09:53:00,Power Failure,1.49,Terminal 2,Electrical System Fault,83,5,1,5.0,1,9,3,1
+SYS258,2025-02-08 15:08:00,2025-02-08 15:15:00,Power Failure,3.84,Terminal 1,Software Malfunction,65,7,6,7.0,1,15,5,2
+SYS484,2025-06-19 07:24:00,2025-06-19 07:36:00,Motor Overheat,2.49,Baggage Claim A,Human Error/Operational Fault,54,12,25,12.0,0,7,3,6
+SYS990,2025-04-16 09:18:00,2025-04-16 09:26:00,Software Glitch,1.01,Terminal 1,Software Malfunction,31,8,16,8.0,1,9,2,4
+SYS620,2025-04-28 21:40:00,2025-04-28 21:47:00,Power Failure,3.59,Terminal 1,Electrical System Fault,97,7,18,7.0,1,21,0,4
+SYS683,2025-05-02 11:21:00,2025-05-02 11:30:00,Sensor Fault,4.08,Baggage Claim B,Sensor Malfunction/Calibration,58,9,18,9.0,1,11,4,5
+SYS630,2025-06-03 14:18:00,2025-06-03 14:24:00,Power Failure,4.4,Terminal 3,Sensor Malfunction/Calibration,48,6,23,6.0,1,14,1,6
+SYS775,2025-03-30 02:25:00,2025-03-30 02:36:00,Software Glitch,1.6,Terminal 3,Mechanical Failure (Belt/Motor),64,11,13,11.0,0,2,6,3
+SYS772,2025-03-10 11:26:00,2025-03-10 11:36:00,Belt Jam,1.87,Terminal 2,Human Error/Operational Fault,90,10,11,10.0,0,11,0,3
+SYS754,2025-05-30 13:24:00,2025-05-30 13:31:00,Belt Jam,1.92,Baggage Claim A,Electrical System Fault,80,7,22,7.0,1,13,4,5
+SYS540,2025-06-09 10:49:00,2025-06-09 10:59:00,Motor Overheat,2.99,Terminal 2,Sensor Malfunction/Calibration,11,10,24,10.0,0,10,0,6
+SYS696,2025-03-05 04:22:00,2025-03-05 04:26:00,Software Glitch,3.7,Terminal 2,Sensor Malfunction/Calibration,51,4,10,4.0,1,4,2,3
+SYS379,2025-04-28 10:36:00,2025-04-28 10:47:00,Software Glitch,1.51,Terminal 3,Sensor Malfunction/Calibration,28,11,18,11.0,0,10,0,4
+SYS201,2025-03-09 20:41:00,2025-03-09 20:52:00,Software Glitch,3.31,Terminal 3,Sensor Malfunction/Calibration,48,11,10,11.0,0,20,6,3
+SYS775,2025-04-19 16:45:00,2025-04-19 16:55:00,Sensor Fault,1.77,Terminal 2,Sensor Malfunction/Calibration,17,10,16,10.0,0,16,5,4
+SYS524,2025-04-07 18:13:00,2025-04-07 18:17:00,Belt Jam,3.47,Baggage Claim A,Sensor Malfunction/Calibration,22,4,15,4.0,1,18,0,4
+SYS329,2025-02-18 13:47:00,2025-02-18 13:56:00,Power Failure,3.37,Terminal 1,Sensor Malfunction/Calibration,76,9,8,9.0,1,13,1,2
+SYS157,2025-02-13 06:20:00,2025-02-13 06:23:00,Software Glitch,2.33,Terminal 1,Electrical System Fault,79,3,7,3.0,1,6,3,2
+SYS902,2025-05-10 12:06:00,2025-05-10 12:10:00,Motor Overheat,3.92,Terminal 1,Human Error/Operational Fault,39,4,19,4.0,1,12,5,5
+SYS761,2025-04-26 21:27:00,2025-04-26 21:31:00,Sensor Fault,3.25,Terminal 1,Mechanical Failure (Belt/Motor),45,4,17,4.0,1,21,5,4
+SYS717,2025-03-18 04:46:00,2025-03-18 04:52:00,Power Failure,1.39,Baggage Claim A,Human Error/Operational Fault,64,6,12,6.0,1,4,1,3
+SYS756,2025-05-24 17:15:00,2025-05-24 17:25:00,Belt Jam,2.2,Baggage Claim B,Electrical System Fault,17,10,21,10.0,0,17,5,5
+SYS385,2025-01-03 03:56:00,2025-01-03 04:02:00,Belt Jam,3.08,Terminal 3,Human Error/Operational Fault,79,6,1,6.0,1,3,4,1
+SYS555,2025-05-30 16:17:00,2025-05-30 16:27:00,Power Failure,4.02,Terminal 1,Sensor Malfunction/Calibration,42,10,22,10.0,0,16,4,5
+SYS753,2025-01-16 07:39:00,2025-01-16 07:49:00,Power Failure,1.47,Terminal 2,Sensor Malfunction/Calibration,32,10,3,10.0,0,7,3,1
+SYS677,2025-04-24 12:28:00,2025-04-24 12:39:00,Belt Jam,2.52,Terminal 3,Mechanical Failure (Belt/Motor),11,11,17,11.0,0,12,3,4
+SYS295,2025-03-16 13:54:00,2025-03-16 13:59:00,Power Failure,4.49,Terminal 2,Software Malfunction,15,5,11,5.0,1,13,6,3
+SYS242,2025-06-12 06:45:00,2025-06-12 06:47:00,Belt Jam,4.97,Baggage Claim B,Human Error/Operational Fault,21,2,24,2.0,1,6,3,6
+SYS257,2025-02-18 00:41:00,2025-02-18 00:56:00,Power Failure,4.51,Terminal 2,Electrical System Fault,39,15,8,15.0,0,0,1,2
+SYS947,2025-05-14 18:10:00,2025-05-14 18:20:00,Sensor Fault,1.85,Baggage Claim A,Mechanical Failure (Belt/Motor),23,10,20,10.0,0,18,2,5
+SYS229,2025-03-14 06:38:00,2025-03-14 06:42:00,Software Glitch,1.89,Baggage Claim B,Electrical System Fault,87,4,11,4.0,1,6,4,3
+SYS636,2025-01-20 04:25:00,2025-01-20 04:32:00,Software Glitch,3.3,Baggage Claim B,Sensor Malfunction/Calibration,63,7,4,7.0,1,4,0,1
+SYS435,2025-02-02 02:43:00,2025-02-02 02:48:00,Belt Jam,4.06,Baggage Claim A,Human Error/Operational Fault,61,5,5,5.0,1,2,6,2
+SYS124,2025-05-11 08:02:00,2025-05-11 08:11:00,Power Failure,3.67,Terminal 2,Mechanical Failure (Belt/Motor),17,9,19,9.0,1,8,6,5
+SYS272,2025-05-29 16:33:00,2025-05-29 16:36:00,Software Glitch,3.2,Baggage Claim A,Human Error/Operational Fault,41,3,22,3.0,1,16,3,5
+SYS752,2025-05-08 01:31:00,2025-05-08 01:39:00,Belt Jam,4.75,Terminal 2,Mechanical Failure (Belt/Motor),29,8,19,8.0,1,1,3,5
+SYS960,2025-05-26 16:28:00,2025-05-26 16:37:00,Sensor Fault,1.07,Terminal 1,Human Error/Operational Fault,11,9,22,9.0,1,16,0,5
+SYS566,2025-03-01 11:02:00,2025-03-01 11:08:00,Belt Jam,2.55,Terminal 1,Software Malfunction,14,6,9,6.0,1,11,5,3
+SYS789,2025-06-11 12:57:00,2025-06-11 13:05:00,Software Glitch,1.23,Baggage Claim B,Sensor Malfunction/Calibration,65,8,24,8.0,1,12,2,6
+SYS248,2025-03-24 18:42:00,2025-03-24 18:46:00,Motor Overheat,1.49,Baggage Claim A,Sensor Malfunction/Calibration,71,4,13,4.0,1,18,0,3
+SYS359,2025-04-25 04:22:00,2025-04-25 04:29:00,Belt Jam,3.53,Baggage Claim B,Electrical System Fault,49,7,17,7.0,1,4,4,4
+SYS458,2025-01-17 01:40:00,2025-01-17 01:49:00,Software Glitch,1.88,Baggage Claim B,Mechanical Failure (Belt/Motor),61,9,3,9.0,1,1,4,1
+SYS584,2025-06-13 02:03:00,2025-06-13 02:12:00,Software Glitch,4.55,Terminal 3,Software Malfunction,71,9,24,9.0,1,2,4,6
+SYS191,2025-01-07 02:34:00,2025-01-07 02:44:00,Motor Overheat,2.93,Baggage Claim B,Human Error/Operational Fault,80,10,2,10.0,0,2,1,1
+SYS504,2025-03-27 08:29:00,2025-03-27 08:35:00,Motor Overheat,1.08,Terminal 3,Mechanical Failure (Belt/Motor),88,6,13,6.0,1,8,3,3
+SYS570,2025-05-29 10:49:00,2025-05-29 10:56:00,Sensor Fault,1.55,Terminal 3,Human Error/Operational Fault,48,7,22,7.0,1,10,3,5
+SYS592,2025-05-13 01:04:00,2025-05-13 01:15:00,Sensor Fault,4.9,Baggage Claim A,Sensor Malfunction/Calibration,91,11,20,11.0,0,1,1,5
+SYS263,2025-06-22 11:11:00,2025-06-22 11:18:00,Belt Jam,2.49,Terminal 2,Human Error/Operational Fault,69,7,25,7.0,1,11,6,6
+SYS728,2025-05-19 11:42:00,2025-05-19 11:45:00,Power Failure,2.95,Terminal 2,Mechanical Failure (Belt/Motor),77,3,21,3.0,1,11,0,5
+SYS863,2025-02-03 10:23:00,2025-02-03 10:31:00,Belt Jam,3.61,Baggage Claim B,Electrical System Fault,61,8,6,8.0,1,10,0,2
+SYS204,2025-06-06 09:13:00,2025-06-06 09:22:00,Motor Overheat,1.41,Terminal 3,Human Error/Operational Fault,18,9,23,9.0,1,9,4,6
+SYS229,2025-06-18 02:08:00,2025-06-18 02:17:00,Software Glitch,2.75,Terminal 1,Sensor Malfunction/Calibration,38,9,25,9.0,1,2,2,6
+SYS331,2025-04-07 17:13:00,2025-04-07 17:21:00,Belt Jam,2.85,Terminal 2,Human Error/Operational Fault,84,8,15,8.0,1,17,0,4
+SYS825,2025-02-03 12:55:00,2025-02-03 13:03:00,Software Glitch,3.55,Terminal 3,Electrical System Fault,88,8,6,8.0,1,12,0,2
+SYS680,2025-05-25 15:55:00,2025-05-25 16:06:00,Belt Jam,3.95,Terminal 3,Human Error/Operational Fault,74,11,21,11.0,0,15,6,5
+SYS107,2025-03-28 01:40:00,2025-03-28 01:48:00,Software Glitch,1.17,Terminal 1,Mechanical Failure (Belt/Motor),96,8,13,8.0,1,1,4,3
+SYS465,2025-02-12 23:28:00,2025-02-12 23:34:00,Motor Overheat,4.97,Baggage Claim A,Mechanical Failure (Belt/Motor),61,6,7,6.0,1,23,2,2
+SYS490,2025-05-23 20:34:00,2025-05-23 20:46:00,Belt Jam,4.14,Baggage Claim B,Sensor Malfunction/Calibration,60,12,21,12.0,0,20,4,5
+SYS419,2025-01-05 12:52:00,2025-01-05 13:04:00,Belt Jam,2.7,Baggage Claim B,Sensor Malfunction/Calibration,90,12,1,12.0,0,12,6,1
+SYS428,2025-05-16 05:59:00,2025-05-16 06:09:00,Software Glitch,2.53,Baggage Claim A,Sensor Malfunction/Calibration,59,10,20,10.0,0,5,4,5
+SYS316,2025-02-18 23:25:00,2025-02-18 23:32:00,Power Failure,3.12,Baggage Claim B,Electrical System Fault,71,7,8,7.0,1,23,1,2
+SYS775,2025-04-24 02:28:00,2025-04-24 02:36:00,Software Glitch,2.17,Baggage Claim A,Human Error/Operational Fault,11,8,17,8.0,1,2,3,4
+SYS387,2025-04-28 13:00:00,2025-04-28 13:13:00,Software Glitch,3.47,Baggage Claim A,Software Malfunction,20,13,18,13.0,0,13,0,4
+SYS372,2025-01-10 13:02:00,2025-01-10 13:12:00,Power Failure,4.71,Terminal 3,Human Error/Operational Fault,64,10,2,10.0,0,13,4,1
+SYS725,2025-06-02 08:07:00,2025-06-02 08:10:00,Software Glitch,4.77,Terminal 1,Software Malfunction,39,3,23,3.0,1,8,0,6
+SYS534,2025-06-21 21:51:00,2025-06-21 21:53:00,Motor Overheat,4.55,Terminal 3,Human Error/Operational Fault,30,2,25,2.0,1,21,5,6
+SYS496,2025-05-02 20:45:00,2025-05-02 20:52:00,Power Failure,1.88,Terminal 3,Human Error/Operational Fault,17,7,18,7.0,1,20,4,5
+SYS337,2025-02-15 23:03:00,2025-02-15 23:12:00,Motor Overheat,4.11,Baggage Claim B,Mechanical Failure (Belt/Motor),84,9,7,9.0,1,23,5,2
+SYS382,2025-03-27 11:01:00,2025-03-27 11:10:00,Software Glitch,4.86,Terminal 1,Mechanical Failure (Belt/Motor),88,9,13,9.0,1,11,3,3
+SYS143,2025-05-31 01:27:00,2025-05-31 01:33:00,Belt Jam,3.93,Terminal 3,Human Error/Operational Fault,52,6,22,6.0,1,1,5,5
+SYS118,2025-06-14 22:56:00,2025-06-14 22:58:00,Software Glitch,1.61,Terminal 1,Mechanical Failure (Belt/Motor),39,2,24,2.0,1,22,5,6
+SYS466,2025-02-08 01:47:00,2025-02-08 01:55:00,Belt Jam,4.51,Baggage Claim A,Mechanical Failure (Belt/Motor),17,8,6,8.0,1,1,5,2
+SYS973,2025-04-16 20:09:00,2025-04-16 20:16:00,Sensor Fault,3.63,Terminal 3,Electrical System Fault,98,7,16,7.0,1,20,2,4
+SYS995,2025-01-10 23:48:00,2025-01-10 23:53:00,Motor Overheat,4.26,Baggage Claim A,Software Malfunction,36,5,2,5.0,1,23,4,1
+SYS697,2025-03-07 15:36:00,2025-03-07 15:46:00,Software Glitch,4.39,Baggage Claim B,Electrical System Fault,67,10,10,10.0,0,15,4,3
+SYS308,2025-02-23 17:15:00,2025-02-23 17:16:00,Sensor Fault,1.04,Baggage Claim B,Electrical System Fault,43,1,8,1.0,1,17,6,2
+SYS169,2025-05-01 17:23:00,2025-05-01 17:28:00,Software Glitch,4.51,Baggage Claim A,Electrical System Fault,67,5,18,5.0,1,17,3,5
+SYS231,2025-05-12 23:24:00,2025-05-12 23:31:00,Motor Overheat,3.89,Baggage Claim A,Electrical System Fault,33,7,20,7.0,1,23,0,5
+SYS156,2025-06-03 13:41:00,2025-06-03 13:44:00,Sensor Fault,2.55,Terminal 2,Electrical System Fault,26,3,23,3.0,1,13,1,6
+SYS615,2025-04-29 09:42:00,2025-04-29 09:54:00,Sensor Fault,3.04,Baggage Claim A,Human Error/Operational Fault,12,12,18,12.0,0,9,1,4
+SYS865,2025-03-21 11:37:00,2025-03-21 11:51:00,Power Failure,2.95,Baggage Claim A,Sensor Malfunction/Calibration,39,14,12,14.0,0,11,4,3
+SYS287,2025-03-23 02:38:00,2025-03-23 02:52:00,Belt Jam,4.3,Terminal 1,Software Malfunction,58,14,12,14.0,0,2,6,3
+SYS641,2025-03-04 03:30:00,2025-03-04 03:37:00,Sensor Fault,4.93,Terminal 2,Mechanical Failure (Belt/Motor),40,7,10,7.0,1,3,1,3
+SYS531,2025-04-10 00:18:00,2025-04-10 00:25:00,Belt Jam,2.49,Terminal 2,Software Malfunction,64,7,15,7.0,1,0,3,4
+SYS212,2025-04-23 20:06:00,2025-04-23 20:12:00,Motor Overheat,3.39,Terminal 2,Electrical System Fault,56,6,17,6.0,1,20,2,4
+SYS217,2025-02-26 16:59:00,2025-02-26 17:03:00,Belt Jam,3.57,Baggage Claim B,Human Error/Operational Fault,26,4,9,4.0,1,16,2,2
+SYS809,2025-01-04 10:59:00,2025-01-04 11:06:00,Software Glitch,4.96,Terminal 1,Sensor Malfunction/Calibration,84,7,1,7.0,1,10,5,1
+SYS701,2025-04-13 02:16:00,2025-04-13 02:25:00,Sensor Fault,3.35,Terminal 2,Sensor Malfunction/Calibration,70,9,15,9.0,1,2,6,4
+SYS961,2025-05-18 00:49:00,2025-05-18 00:59:00,Software Glitch,4.33,Terminal 3,Electrical System Fault,79,10,20,10.0,0,0,6,5
+SYS856,2025-03-22 09:22:00,2025-03-22 09:27:00,Power Failure,1.22,Baggage Claim B,Software Malfunction,44,5,12,5.0,1,9,5,3
+SYS173,2025-02-15 15:21:00,2025-02-15 15:31:00,Belt Jam,4.75,Terminal 1,Electrical System Fault,79,10,7,10.0,0,15,5,2
+SYS737,2025-03-31 21:23:00,2025-03-31 21:29:00,Motor Overheat,3.91,Baggage Claim B,Mechanical Failure (Belt/Motor),44,6,14,6.0,1,21,0,3
+SYS281,2025-05-09 13:11:00,2025-05-09 13:22:00,Sensor Fault,1.9,Terminal 3,Mechanical Failure (Belt/Motor),69,11,19,11.0,0,13,4,5
+SYS647,2025-02-26 16:24:00,2025-02-26 16:34:00,Power Failure,1.05,Terminal 2,Software Malfunction,33,10,9,10.0,0,16,2,2
+SYS262,2025-04-18 10:17:00,2025-04-18 10:22:00,Motor Overheat,2.1,Terminal 1,Mechanical Failure (Belt/Motor),23,5,16,5.0,1,10,4,4
+SYS947,2025-04-30 15:05:00,2025-04-30 15:10:00,Sensor Fault,2.48,Baggage Claim B,Human Error/Operational Fault,98,5,18,5.0,1,15,2,4
+SYS695,2025-03-11 14:00:00,2025-03-11 14:06:00,Motor Overheat,3.48,Terminal 3,Sensor Malfunction/Calibration,66,6,11,6.0,1,14,1,3
+SYS789,2025-01-21 03:15:00,2025-01-21 03:23:00,Software Glitch,2.64,Terminal 2,Software Malfunction,16,8,4,8.0,1,3,1,1
+SYS302,2025-03-11 10:38:00,2025-03-11 10:48:00,Motor Overheat,4.85,Terminal 3,Sensor Malfunction/Calibration,24,10,11,10.0,0,10,1,3
+SYS525,2025-06-25 03:18:00,2025-06-25 03:23:00,Software Glitch,4.31,Terminal 1,Software Malfunction,23,5,26,5.0,1,3,2,6
+SYS404,2025-02-26 02:44:00,2025-02-26 02:49:00,Motor Overheat,2.86,Terminal 2,Mechanical Failure (Belt/Motor),98,5,9,5.0,1,2,2,2
+SYS544,2025-03-26 06:23:00,2025-03-26 06:33:00,Motor Overheat,1.46,Baggage Claim B,Software Malfunction,59,10,13,10.0,0,6,2,3
+SYS388,2025-04-27 14:54:00,2025-04-27 15:04:00,Software Glitch,3.09,Terminal 3,Mechanical Failure (Belt/Motor),70,10,17,10.0,0,14,6,4
+SYS127,2025-03-02 22:57:00,2025-03-02 23:04:00,Belt Jam,3.89,Terminal 2,Mechanical Failure (Belt/Motor),50,7,9,7.0,1,22,6,3
+SYS297,2025-06-16 02:56:00,2025-06-16 03:02:00,Software Glitch,4.39,Baggage Claim A,Mechanical Failure (Belt/Motor),83,6,25,6.0,1,2,0,6
+SYS211,2025-03-26 00:21:00,2025-03-26 00:29:00,Belt Jam,1.86,Terminal 1,Human Error/Operational Fault,83,8,13,8.0,1,0,2,3
+SYS185,2025-04-08 19:27:00,2025-04-08 19:40:00,Power Failure,2.16,Terminal 1,Human Error/Operational Fault,49,13,15,13.0,0,19,1,4
+SYS749,2025-02-07 09:30:00,2025-02-07 09:35:00,Sensor Fault,4.91,Terminal 2,Software Malfunction,72,5,6,5.0,1,9,4,2
+SYS253,2025-02-18 15:59:00,2025-02-18 16:10:00,Motor Overheat,2.32,Terminal 2,Sensor Malfunction/Calibration,95,11,8,11.0,0,15,1,2
+SYS843,2025-05-23 06:15:00,2025-05-23 06:22:00,Power Failure,4.51,Baggage Claim B,Electrical System Fault,95,7,21,7.0,1,6,4,5
+SYS980,2025-04-26 10:03:00,2025-04-26 10:16:00,Software Glitch,1.11,Terminal 2,Sensor Malfunction/Calibration,34,13,17,13.0,0,10,5,4
+SYS196,2025-05-11 17:47:00,2025-05-11 17:56:00,Belt Jam,2.56,Baggage Claim B,Human Error/Operational Fault,15,9,19,9.0,1,17,6,5
+SYS808,2025-06-16 10:00:00,2025-06-16 10:06:00,Power Failure,4.86,Terminal 1,Software Malfunction,21,6,25,6.0,1,10,0,6
+SYS607,2025-03-15 00:07:00,2025-03-15 00:14:00,Sensor Fault,4.17,Baggage Claim A,Human Error/Operational Fault,45,7,11,7.0,1,0,5,3
+SYS337,2025-03-26 18:15:00,2025-03-26 18:22:00,Power Failure,3.13,Terminal 3,Software Malfunction,51,7,13,7.0,1,18,2,3
+SYS553,2025-03-01 07:47:00,2025-03-01 07:59:00,Power Failure,4.17,Baggage Claim A,Software Malfunction,16,12,9,12.0,0,7,5,3
+SYS974,2025-03-21 06:26:00,2025-03-21 06:36:00,Motor Overheat,4.93,Terminal 3,Mechanical Failure (Belt/Motor),42,10,12,10.0,0,6,4,3
+SYS619,2025-05-09 16:54:00,2025-05-09 17:01:00,Power Failure,4.58,Terminal 2,Human Error/Operational Fault,57,7,19,7.0,1,16,4,5
+SYS857,2025-04-17 10:12:00,2025-04-17 10:26:00,Software Glitch,4.43,Baggage Claim A,Sensor Malfunction/Calibration,18,14,16,14.0,0,10,3,4
+SYS986,2025-01-12 13:33:00,2025-01-12 13:38:00,Sensor Fault,4.87,Baggage Claim A,Human Error/Operational Fault,72,5,2,5.0,1,13,6,1
+SYS359,2025-04-19 16:52:00,2025-04-19 17:03:00,Belt Jam,4.99,Terminal 3,Sensor Malfunction/Calibration,68,11,16,11.0,0,16,5,4
+SYS452,2025-05-08 02:10:00,2025-05-08 02:22:00,Software Glitch,1.12,Terminal 3,Software Malfunction,29,12,19,12.0,0,2,3,5
+SYS575,2025-06-11 23:25:00,2025-06-11 23:34:00,Motor Overheat,4.43,Terminal 2,Human Error/Operational Fault,59,9,24,9.0,1,23,2,6
+SYS671,2025-05-14 03:30:00,2025-05-14 03:38:00,Power Failure,2.26,Terminal 2,Electrical System Fault,20,8,20,8.0,1,3,2,5
+SYS325,2025-06-24 23:07:00,2025-06-24 23:09:00,Belt Jam,4.28,Baggage Claim A,Electrical System Fault,85,2,26,2.0,1,23,1,6
+SYS376,2025-01-30 16:25:00,2025-01-30 16:31:00,Motor Overheat,1.45,Baggage Claim A,Human Error/Operational Fault,99,6,5,6.0,1,16,3,1
+SYS406,2025-06-10 16:20:00,2025-06-10 16:31:00,Sensor Fault,2.8,Terminal 3,Sensor Malfunction/Calibration,67,11,24,11.0,0,16,1,6
+SYS378,2025-03-16 15:52:00,2025-03-16 15:59:00,Power Failure,3.48,Baggage Claim A,Human Error/Operational Fault,31,7,11,7.0,1,15,6,3
+SYS958,2025-01-17 13:56:00,2025-01-17 14:05:00,Power Failure,3.54,Terminal 2,Sensor Malfunction/Calibration,93,9,3,9.0,1,13,4,1
+SYS165,2025-05-05 04:31:00,2025-05-05 04:40:00,Motor Overheat,2.26,Terminal 1,Human Error/Operational Fault,37,9,19,9.0,1,4,0,5
+SYS858,2025-02-16 07:33:00,2025-02-16 07:40:00,Power Failure,2.12,Terminal 3,Software Malfunction,72,7,7,7.0,1,7,6,2
+SYS541,2025-03-08 08:35:00,2025-03-08 08:45:00,Motor Overheat,3.05,Terminal 3,Mechanical Failure (Belt/Motor),47,10,10,10.0,0,8,5,3
+SYS559,2025-05-23 20:14:00,2025-05-23 20:26:00,Power Failure,1.93,Terminal 3,Mechanical Failure (Belt/Motor),18,12,21,12.0,0,20,4,5
+SYS306,2025-04-09 14:04:00,2025-04-09 14:10:00,Motor Overheat,2.04,Baggage Claim B,Human Error/Operational Fault,15,6,15,6.0,1,14,2,4
+SYS711,2025-05-31 22:57:00,2025-05-31 23:00:00,Belt Jam,2.53,Baggage Claim B,Mechanical Failure (Belt/Motor),71,3,22,3.0,1,22,5,5
+SYS980,2025-02-04 09:55:00,2025-02-04 09:56:00,Power Failure,1.17,Baggage Claim B,Electrical System Fault,97,1,6,1.0,1,9,1,2
+SYS383,2025-01-14 02:33:00,2025-01-14 02:43:00,Software Glitch,1.07,Terminal 2,Sensor Malfunction/Calibration,80,10,3,10.0,0,2,1,1
+SYS862,2025-03-04 18:16:00,2025-03-04 18:27:00,Power Failure,3.51,Terminal 1,Human Error/Operational Fault,28,11,10,11.0,0,18,1,3
+SYS928,2025-06-24 16:51:00,2025-06-24 17:00:00,Motor Overheat,1.27,Terminal 1,Human Error/Operational Fault,90,9,26,9.0,1,16,1,6
+SYS419,2025-01-30 04:24:00,2025-01-30 04:30:00,Sensor Fault,3.27,Baggage Claim A,Mechanical Failure (Belt/Motor),61,6,5,6.0,1,4,3,1
+SYS167,2025-03-30 20:26:00,2025-03-30 20:36:00,Belt Jam,4.51,Terminal 1,Software Malfunction,11,10,13,10.0,0,20,6,3
+SYS354,2025-04-15 19:10:00,2025-04-15 19:23:00,Belt Jam,1.32,Terminal 2,Electrical System Fault,71,13,16,13.0,0,19,1,4
+SYS675,2025-04-23 07:11:00,2025-04-23 07:19:00,Software Glitch,4.16,Baggage Claim B,Sensor Malfunction/Calibration,94,8,17,8.0,1,7,2,4
+SYS403,2025-05-29 22:28:00,2025-05-29 22:35:00,Motor Overheat,4.33,Baggage Claim B,Electrical System Fault,76,7,22,7.0,1,22,3,5
+SYS827,2025-06-21 16:52:00,2025-06-21 17:03:00,Software Glitch,4.82,Baggage Claim A,Software Malfunction,17,11,25,11.0,0,16,5,6
+SYS530,2025-02-14 05:42:00,2025-02-14 05:52:00,Motor Overheat,1.33,Baggage Claim A,Mechanical Failure (Belt/Motor),63,10,7,10.0,0,5,4,2
+SYS125,2025-03-17 02:53:00,2025-03-17 03:03:00,Power Failure,1.66,Terminal 1,Sensor Malfunction/Calibration,31,10,12,10.0,0,2,0,3
+SYS768,2025-01-21 08:24:00,2025-01-21 08:36:00,Sensor Fault,3.56,Terminal 3,Mechanical Failure (Belt/Motor),64,12,4,12.0,0,8,1,1
+SYS678,2025-04-02 08:59:00,2025-04-02 09:09:00,Motor Overheat,3.61,Terminal 1,Human Error/Operational Fault,75,10,14,10.0,0,8,2,4
+SYS460,2025-06-11 05:46:00,2025-06-11 05:52:00,Sensor Fault,3.03,Baggage Claim A,Software Malfunction,96,6,24,6.0,1,5,2,6
+SYS382,2025-06-15 21:25:00,2025-06-15 21:33:00,Sensor Fault,1.56,Baggage Claim B,Electrical System Fault,74,8,24,8.0,1,21,6,6
+SYS966,2025-04-03 12:32:00,2025-04-03 12:39:00,Belt Jam,1.78,Baggage Claim B,Human Error/Operational Fault,44,7,14,7.0,1,12,3,4
+SYS800,2025-06-25 12:28:00,2025-06-25 12:43:00,Power Failure,1.02,Terminal 3,Software Malfunction,55,15,26,15.0,0,12,2,6
+SYS235,2025-04-23 20:13:00,2025-04-23 20:19:00,Sensor Fault,1.15,Baggage Claim A,Human Error/Operational Fault,99,6,17,6.0,1,20,2,4
+SYS717,2025-02-08 05:40:00,2025-02-08 05:44:00,Sensor Fault,2.17,Terminal 1,Sensor Malfunction/Calibration,18,4,6,4.0,1,5,5,2
+SYS652,2025-03-29 13:36:00,2025-03-29 13:43:00,Motor Overheat,4.27,Terminal 2,Mechanical Failure (Belt/Motor),30,7,13,7.0,1,13,5,3
+SYS878,2025-02-20 03:02:00,2025-02-20 03:10:00,Belt Jam,1.18,Terminal 2,Electrical System Fault,20,8,8,8.0,1,3,3,2
+SYS657,2025-03-18 02:06:00,2025-03-18 02:17:00,Power Failure,1.66,Terminal 1,Mechanical Failure (Belt/Motor),49,11,12,11.0,0,2,1,3
+SYS208,2025-04-18 00:18:00,2025-04-18 00:28:00,Power Failure,3.43,Baggage Claim A,Human Error/Operational Fault,42,10,16,10.0,0,0,4,4
+SYS202,2025-02-14 10:01:00,2025-02-14 10:08:00,Power Failure,4.82,Terminal 3,Mechanical Failure (Belt/Motor),78,7,7,7.0,1,10,4,2
+SYS530,2025-01-08 19:36:00,2025-01-08 19:43:00,Belt Jam,1.24,Baggage Claim B,Mechanical Failure (Belt/Motor),56,7,2,7.0,1,19,2,1
+SYS757,2025-03-25 14:09:00,2025-03-25 14:17:00,Motor Overheat,1.46,Baggage Claim B,Human Error/Operational Fault,42,8,13,8.0,1,14,1,3
+SYS511,2025-05-07 06:59:00,2025-05-07 07:04:00,Motor Overheat,3.2,Baggage Claim B,Mechanical Failure (Belt/Motor),85,5,19,5.0,1,6,2,5
+SYS140,2025-05-02 10:54:00,2025-05-02 11:01:00,Power Failure,4.77,Terminal 2,Mechanical Failure (Belt/Motor),72,7,18,7.0,1,10,4,5
+SYS365,2025-01-29 01:44:00,2025-01-29 01:54:00,Sensor Fault,3.01,Baggage Claim A,Mechanical Failure (Belt/Motor),60,10,5,10.0,0,1,2,1
+SYS476,2025-04-28 11:52:00,2025-04-28 12:01:00,Power Failure,1.62,Terminal 1,Electrical System Fault,12,9,18,9.0,1,11,0,4
+SYS395,2025-03-25 07:33:00,2025-03-25 07:41:00,Motor Overheat,4.28,Baggage Claim A,Software Malfunction,50,8,13,8.0,1,7,1,3
+SYS334,2025-01-12 06:58:00,2025-01-12 07:04:00,Motor Overheat,2.94,Baggage Claim B,Software Malfunction,54,6,2,6.0,1,6,6,1
+SYS378,2025-04-11 20:36:00,2025-04-11 20:42:00,Power Failure,4.27,Baggage Claim A,Software Malfunction,47,6,15,6.0,1,20,4,4
+SYS537,2025-01-28 04:36:00,2025-01-28 04:46:00,Software Glitch,4.41,Terminal 3,Software Malfunction,45,10,5,10.0,0,4,1,1
+SYS129,2025-04-09 06:14:00,2025-04-09 06:25:00,Power Failure,2.79,Terminal 1,Electrical System Fault,41,11,15,11.0,0,6,2,4
+SYS946,2025-06-05 19:55:00,2025-06-05 20:03:00,Sensor Fault,4.04,Baggage Claim B,Software Malfunction,32,8,23,8.0,1,19,3,6
+SYS924,2025-04-14 18:18:00,2025-04-14 18:20:00,Software Glitch,1.11,Terminal 1,Mechanical Failure (Belt/Motor),42,2,16,2.0,1,18,0,4
+SYS389,2025-06-01 11:18:00,2025-06-01 11:30:00,Belt Jam,1.67,Baggage Claim B,Software Malfunction,46,12,22,12.0,0,11,6,6
+SYS301,2025-01-07 20:19:00,2025-01-07 20:27:00,Power Failure,3.58,Baggage Claim B,Human Error/Operational Fault,44,8,2,8.0,1,20,1,1
+SYS578,2025-06-20 16:46:00,2025-06-20 16:55:00,Sensor Fault,4.17,Terminal 3,Electrical System Fault,20,9,25,9.0,1,16,4,6
+SYS787,2025-02-18 14:40:00,2025-02-18 14:51:00,Software Glitch,1.87,Baggage Claim A,Human Error/Operational Fault,85,11,8,11.0,0,14,1,2
+SYS487,2025-03-06 17:34:00,2025-03-06 17:47:00,Belt Jam,1.67,Terminal 3,Electrical System Fault,59,13,10,13.0,0,17,3,3
+SYS174,2025-03-10 15:25:00,2025-03-10 15:33:00,Motor Overheat,1.54,Terminal 2,Sensor Malfunction/Calibration,35,8,11,8.0,1,15,0,3
+SYS547,2025-06-04 06:02:00,2025-06-04 06:09:00,Software Glitch,2.66,Terminal 1,Mechanical Failure (Belt/Motor),60,7,23,7.0,1,6,2,6
+SYS641,2025-02-19 04:21:00,2025-02-19 04:28:00,Motor Overheat,1.52,Terminal 2,Human Error/Operational Fault,46,7,8,7.0,1,4,2,2
+SYS968,2025-06-19 02:03:00,2025-06-19 02:16:00,Motor Overheat,2.9,Baggage Claim B,Mechanical Failure (Belt/Motor),15,13,25,13.0,0,2,3,6
+SYS208,2025-01-18 03:20:00,2025-01-18 03:28:00,Motor Overheat,4.88,Terminal 3,Mechanical Failure (Belt/Motor),31,8,3,8.0,1,3,5,1
+SYS264,2025-03-09 18:12:00,2025-03-09 18:21:00,Software Glitch,2.91,Terminal 2,Sensor Malfunction/Calibration,22,9,10,9.0,1,18,6,3
+SYS998,2025-06-11 06:04:00,2025-06-11 06:14:00,Motor Overheat,2.21,Terminal 3,Human Error/Operational Fault,41,10,24,10.0,0,6,2,6
+SYS596,2025-04-19 12:41:00,2025-04-19 12:51:00,Software Glitch,3.03,Terminal 3,Electrical System Fault,30,10,16,10.0,0,12,5,4
+SYS703,2025-02-13 02:18:00,2025-02-13 02:20:00,Software Glitch,3.33,Terminal 3,Electrical System Fault,22,2,7,2.0,1,2,3,2
+SYS238,2025-04-21 14:25:00,2025-04-21 14:35:00,Power Failure,1.83,Terminal 1,Software Malfunction,26,10,17,10.0,0,14,0,4
+SYS886,2025-04-09 01:43:00,2025-04-09 01:54:00,Belt Jam,1.81,Terminal 2,Electrical System Fault,94,11,15,11.0,0,1,2,4
+SYS616,2025-01-08 21:47:00,2025-01-08 21:53:00,Power Failure,2.9,Terminal 2,Electrical System Fault,45,6,2,6.0,1,21,2,1
+SYS921,2025-04-28 01:03:00,2025-04-28 01:16:00,Software Glitch,3.13,Terminal 3,Mechanical Failure (Belt/Motor),21,13,18,13.0,0,1,0,4
+SYS586,2025-05-29 06:34:00,2025-05-29 06:47:00,Sensor Fault,1.5,Terminal 3,Electrical System Fault,90,13,22,13.0,0,6,3,5
